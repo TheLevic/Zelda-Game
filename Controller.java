@@ -54,28 +54,28 @@ class Controller implements ActionListener, MouseListener, KeyListener
 			break;
 			case KeyEvent.VK_A: 
 				a = true;
-				if(view.scrollPositonX >= 700){
-					view.scrollPositonX -= 700;
+				if(view.scrollPositonX >= view.windowXSize){
+					view.scrollPositonX -= view.windowXSize;
 				}
 				break;
 
 			case KeyEvent.VK_D:
 			d = true;
-			if(view.scrollPositonX < 700){
-				view.scrollPositonX += 700;
+			if(view.scrollPositonX < view.windowXSize){
+				view.scrollPositonX += view.windowXSize;
 			}
 			break;
 
 			case KeyEvent.VK_W:
 			w = true;
-			if(view.scrollPositonY >= 500){
-				view.scrollPositonY -= 500;
+			if(view.scrollPositonY >= view.windowYSize){
+				view.scrollPositonY -= view.windowYSize;
 			}
 			break;
 
 			case KeyEvent.VK_X: x = true;
-			if(view.scrollPositonY < 500){
-				view.scrollPositonY += 500;
+			if(view.scrollPositonY < view.windowYSize){
+				view.scrollPositonY += view.windowYSize;
 			}
 			break;
 		}

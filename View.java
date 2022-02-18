@@ -27,8 +27,8 @@ class View extends JPanel
 	//Position Variables
 	int scrollPositonX = 0;
 	int scrollPositonY = 0;
-	int windowX = 700;
-	int windowY = 500;
+	int windowXSize = 700;
+	int windowYSize = 500;
 	char key;
 
 
