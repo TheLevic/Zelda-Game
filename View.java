@@ -22,6 +22,10 @@ class View extends JPanel
 	JButton b1; 
 	BufferedImage brick;
 	Model model;
+	//Position Variables
+	int viewx;
+	int viewy;
+
 
 	View(Controller c, Model m)
 	{

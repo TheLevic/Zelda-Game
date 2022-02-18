@@ -1,6 +1,5 @@
 
 public class Brick {
-	Model model;
 	//Location of the brick
 	int x;
 	int y;

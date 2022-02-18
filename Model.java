@@ -31,7 +31,6 @@ public class Model {
 		int x = X - X % 50;
 		int y = Y - Y % 50;
 		Brick n = new Brick(x,y);
-//		bricks.add(n);
 		if (!detectBrick(x,y)) {
 			bricks.add(n);
 		}
@@ -51,6 +50,7 @@ public class Model {
 		for (int i = 0; i < bricks.size(); i++) {
 			Brick testing = bricks.get(i); //Testing our new brick vs the existing bricks
 			if ((locationx >= testing.x && locationx < testing.x + testing.w && locationy >= testing.y && locationy < testing.y + testing.h)) {
+				bricks.remove(i);
 				return true;
 			}
 		}

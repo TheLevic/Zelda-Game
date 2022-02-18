@@ -27,7 +27,7 @@ public class Game extends JFrame
 		view = new View(controller, model); //Created two new objects. A controller and the view
 		view.addMouseListener(controller);
 		this.setTitle("A3 - Map Editor");
-		this.setSize(500, 500);
+		this.setSize(700, 500);
 		this.setFocusable(true);
 		this.getContentPane().add(view);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

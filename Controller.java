@@ -23,12 +23,14 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	Model model;
 	
 	//Controls
-	boolean keyLeft;
-	boolean keyRight;
-	boolean keyUp;
-	boolean keyDown;
-	boolean esc;
-	boolean q;
+		//Quit
+		boolean esc;
+		boolean q;
+		//Move view
+		boolean a;
+		boolean d;
+		boolean w;
+		boolean x;
 	
 	
 	Controller(Model m) {
@@ -46,12 +48,10 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	{
 		switch(e.getKeyCode())
 		{
-			case KeyEvent.VK_RIGHT: keyRight = true; break;
-			case KeyEvent.VK_LEFT: keyLeft = true; break;
-			case KeyEvent.VK_UP: keyUp = true; break;
-			case KeyEvent.VK_DOWN: keyDown = true; break;
-			case KeyEvent.VK_ESCAPE: esc = true; break;
 			case KeyEvent.VK_Q: q = true; break;
+			case KeyEvent.VK_A: a = true; break;
+			case KeyEvent.VK_D: d = true; break;
+			case KeyEvent.VK_X: x = true; break;
 		}
 	}
 
@@ -59,10 +59,10 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	{
 		switch(e.getKeyCode())
 		{
-			case KeyEvent.VK_RIGHT: keyRight = false; break;
-			case KeyEvent.VK_LEFT: keyLeft = false; break;
-			case KeyEvent.VK_UP: keyUp = false; break;
-			case KeyEvent.VK_DOWN: keyDown = false; break;
+			case KeyEvent.VK_Q: q = false; break;
+			case KeyEvent.VK_A: a = false; break;
+			case KeyEvent.VK_D: d = false; break;
+			case KeyEvent.VK_X: x = false; break;
 		}
 	}
 
@@ -71,10 +71,6 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	}
 	
 	void update() {
-//		if(keyRight) model.dest_x+=4;
-//		if(keyLeft) model.dest_x-=4;
-//		if(keyDown) model.dest_y+=4;
-//		if(keyUp) model.dest_y-=4;
 		if(esc) System.exit(0);
 		if (q) System.exit(0);
 	}
