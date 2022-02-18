@@ -27,10 +27,22 @@ public class Model {
 	
 	
 	//Adds brick to the screen on mouseclick
-	public void clickBrick(int X, int Y) {
+	public void addBrickToScreen(int X, int Y) {
 		int x = X - X % 50;
 		int y = Y - Y % 50;
-		Brick n = new Brick(x, y);
-		bricks.add(bricks.size(), n);
+		
+		Brick n = new Brick(x,y);
+		bricks.add(n);
+		
+		
 	}
+	
+	
+	//Makes sure we can place a brick (There isn't one there already)
+	public boolean detectBrick(Brick y) {
+		return false;
+	}
+	
+	
+	
 }

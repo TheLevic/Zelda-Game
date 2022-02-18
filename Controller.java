@@ -84,7 +84,7 @@ class Controller implements ActionListener, MouseListener, KeyListener
 		//Gets the location of where user clicks
 		int locationx = e.getX();
 		int locationy = e.getY();
-		model.clickBrick(locationx, locationy);
+		model.addBrickToScreen(locationx, locationy); //Adds the brick to the screen
 		
 	}
 
