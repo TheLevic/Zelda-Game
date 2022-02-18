@@ -22,7 +22,6 @@ class View extends JPanel
 	JButton b1; 
 	BufferedImage brick;
 	Model model;
-	Controller controller;
 
 	//Position Variables
 	int scrollPositonX = 0;

@@ -51,9 +51,7 @@ class Controller implements ActionListener, MouseListener, KeyListener
 		switch(e.getKeyCode())
 		{
 			case KeyEvent.VK_ESCAPE: esc = true; break;
-			case KeyEvent.VK_Q:
-			q = true;
-			break;
+			case KeyEvent.VK_Q: q = true; break;
 			case KeyEvent.VK_A: 
 				a = true;
 				if(view.scrollPositonX >= view.windowXSize){
