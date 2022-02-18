@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
+
 //This class is capable of handling ActionEvents such as when someone pushes a button
 class Controller implements ActionListener, MouseListener, KeyListener
 {
@@ -35,7 +36,6 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	}
 
 	public void actionPerformed(ActionEvent e) { //method that handles the event
-		view.removeButton(); //Removing the button from the users view
 	}
 	
 	void setView(View v) { //Setter that sets the view
@@ -80,8 +80,12 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	}
 	
 	public void mousePressed(MouseEvent e)
-	{
-		model.setDestination(e.getX(), e.getY());
+	{		
+		//Gets the location of where user clicks
+		int locationx = e.getX();
+		int locationy = e.getY();
+		model.clickBrick(locationx, locationy);
+		
 	}
 
 	public void mouseReleased(MouseEvent e) {    }
