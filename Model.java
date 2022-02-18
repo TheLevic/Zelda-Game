@@ -1,7 +1,7 @@
 /*
  * Levi Crider
  * 2/9/22
- * Turtle Game!
+ * Map editor
  * Create a game that allows the turtle to move across the screen with arrow keys or mouse clicks
  * 
  * 
