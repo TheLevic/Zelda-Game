@@ -58,6 +58,23 @@ public class Model {
 		return false;
 	}
 	
+
+	//Marshalling methods
+	Json Marshal(){
+		Json ob = Json.newObject();
+		Json tmpList = Json.newList();
+        ob.add("brick", tmpList);
+        for(int i = 0; i < bricks.size(); i++)
+            tmpList.add(bricks.get(i).Marshal());
+        return ob;
+	}
+
+	void Unmarshal(Json ob){
+		bricks = new ArrayList<Brick>(); //Making a new list for our bricks
+		Json tmplist = ob.get("brick"); //Getting bricks from our file
+		for(int i = 0; i < tmplist.size(); i++)
+            bricks.add(new Brick(tmplist.get(i)));
+    }
 	
 	
 }

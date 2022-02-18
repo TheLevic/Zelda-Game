@@ -18,5 +18,17 @@ public class Brick {
 		x = locationx;
 		y = locationy;
 	}
+	Brick(Json ob){
+		x = (int)ob.getLong("brickx");
+		y = (int)ob.getLong("bricky");
+	}
+
+	//Marshalling Methods
+	Json Marshal(){
+		Json ob = Json.newObject();
+		ob.add("brickx", x);
+		ob.add("bricky", y);
+		return ob;
+	}
 	
 }

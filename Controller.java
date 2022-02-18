@@ -31,6 +31,8 @@ class Controller implements ActionListener, MouseListener, KeyListener
 		boolean d;
 		boolean w;
 		boolean x;
+		boolean s;
+		boolean l;
 	
 	
 	Controller(Model m) {
@@ -78,7 +80,19 @@ class Controller implements ActionListener, MouseListener, KeyListener
 				view.scrollPositonY += view.windowYSize;
 			}
 			break;
+
+			case KeyEvent.VK_S:
+				Json saveObject = model.Marshal();
+				saveObject.save("brickLocation.json");
+				System.out.println("Saved");
+				break;
+			case KeyEvent.VK_L:
+				Json loadObject = Json.load("brickLocation.json");
+				model.Unmarshal(loadObject);
+				System.out.println("Loaded");
+
 		}
+
 	}
 
 	public void keyReleased(KeyEvent e)
