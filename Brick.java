@@ -20,13 +20,5 @@ public class Brick {
 		y = locationy;
 	}
 	
-	public boolean detectBrick(int locationx, int locationy) {
-		for (int i = 0; i < model.bricks.size(); i++) {
-			Brick testing = model.bricks.get(i);
-			if ((locationx >= testing.x && locationx <= testing.x + testing.w) && (locationy >= testing.y && locationy <= testing.y + testing.h)) {
-				return true;
-			}
-		}
-		return false;
-	}
+	
 }
