@@ -19,5 +19,4 @@ public class Brick {
 		y = locationy;
 	}
 	
-	
 }

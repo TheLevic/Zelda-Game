@@ -48,10 +48,36 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	{
 		switch(e.getKeyCode())
 		{
-			case KeyEvent.VK_Q: q = true; break;
-			case KeyEvent.VK_A: a = true; break;
-			case KeyEvent.VK_D: d = true; break;
-			case KeyEvent.VK_X: x = true; break;
+			case KeyEvent.VK_ESCAPE: esc = true; break;
+			case KeyEvent.VK_Q:
+			q = true;
+			break;
+			case KeyEvent.VK_A: 
+				a = true;
+				if(view.scrollPositonX >= 700){
+					view.scrollPositonX -= 700;
+				}
+				break;
+
+			case KeyEvent.VK_D:
+			d = true;
+			if(view.scrollPositonX < 700){
+				view.scrollPositonX += 700;
+			}
+			break;
+
+			case KeyEvent.VK_W:
+			w = true;
+			if(view.scrollPositonY >= 500){
+				view.scrollPositonY -= 500;
+			}
+			break;
+
+			case KeyEvent.VK_X: x = true;
+			if(view.scrollPositonY < 500){
+				view.scrollPositonY += 500;
+			}
+			break;
 		}
 	}
 
@@ -80,7 +106,7 @@ class Controller implements ActionListener, MouseListener, KeyListener
 		//Gets the location of where user clicks
 		int locationx = e.getX();
 		int locationy = e.getY();
-		model.addBrickToScreen(locationx, locationy); //Adds the brick to the screen
+		model.addBrickToScreen(locationx + view.scrollPositonX, locationy + view.scrollPositonY); //Adds the brick to the screen
 		
 	}
 

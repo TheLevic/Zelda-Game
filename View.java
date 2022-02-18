@@ -22,9 +22,14 @@ class View extends JPanel
 	JButton b1; 
 	BufferedImage brick;
 	Model model;
+	Controller controller;
+
 	//Position Variables
-	int viewx;
-	int viewy;
+	int scrollPositonX = 0;
+	int scrollPositonY = 0;
+	int windowX = 700;
+	int windowY = 500;
+	char key;
 
 
 	View(Controller c, Model m)
@@ -51,7 +56,7 @@ class View extends JPanel
 		for(int i = 0; i < model.bricks.size(); i++)
 		{
 			Brick b = model.bricks.get(i);
-			g.drawImage(this.brick, b.x, b.y, null);
+			g.drawImage(this.brick, b.x - scrollPositonX, b.y - scrollPositonY, null);
 		}
 	}
 }

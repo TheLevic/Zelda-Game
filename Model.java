@@ -31,6 +31,7 @@ public class Model {
 		int x = X - X % 50;
 		int y = Y - Y % 50;
 		Brick n = new Brick(x,y);
+		//Brick detection/deletion
 		if (!detectBrick(x,y)) {
 			bricks.add(n);
 		}
