@@ -44,18 +44,18 @@ public class Model {
 	}
 	
 	//Makes sure we aren't placing two bricks in the same location
-		public boolean detectBrick(int locationx, int locationy) {
-			if(bricks.size() == 0) {
-				return false;
-			}
-			for (int i = 0; i < bricks.size(); i++) {
-				Brick testing = bricks.get(i);
-				if ((locationx >= testing.x && locationx <= testing.x + testing.w) && (locationy >= testing.y && locationy <= testing.y + testing.h)) {
-					return true;
-				}
-			}
+	public boolean detectBrick(int locationx, int locationy) { //Location x and y are the snap to grid locations of the brick we are trying to place
+		if(bricks.size() == 0) {
 			return false;
 		}
+		for (int i = 0; i < bricks.size(); i++) {
+			Brick testing = bricks.get(i); //Testing our new brick vs the existing bricks
+			if ((locationx >= testing.x && locationx < testing.x + testing.w && locationy >= testing.y && locationy < testing.y + testing.h)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 	
