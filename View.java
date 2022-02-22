@@ -16,8 +16,7 @@ import java.io.File;
 import javax.swing.JButton;
 
 //JPanel is the content that is inside of the application (Creates the users view)
-class View extends JPanel
-{
+class View extends JPanel{
 	//Member variables
 	JButton b1; 
 	BufferedImage brick;
@@ -31,8 +30,7 @@ class View extends JPanel
 	char key;
 
 
-	View(Controller c, Model m)
-	{
+	View(Controller c, Model m){
 		model = m;
 		
 		try {
@@ -46,14 +44,12 @@ class View extends JPanel
 	}
 	
 	//Method that adds the image and color to the view
-	public void paintComponent(Graphics g)
-	{
+	public void paintComponent(Graphics g){
 		g.setColor(new Color(128, 255, 255));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
 		//Adds the bricks to the screen
-		for(int i = 0; i < model.bricks.size(); i++)
-		{
+		for(int i = 0; i < model.bricks.size(); i++){
 			Brick b = model.bricks.get(i);
 			g.drawImage(this.brick, b.x - scrollPositonX, b.y - scrollPositonY, null);
 		}

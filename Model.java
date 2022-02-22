@@ -14,13 +14,11 @@ public class Model {
 	ArrayList<Brick> bricks = new ArrayList<Brick>();
 
 	//Constructor
-	Model()
-	{
+	Model(){
 		
 	}
 
-	public void update()
-	{
+	public void update(){
 		
 	}
 

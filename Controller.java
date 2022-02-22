@@ -15,8 +15,7 @@ import java.awt.event.KeyEvent;
 
 
 //This class is capable of handling ActionEvents such as when someone pushes a button
-class Controller implements ActionListener, MouseListener, KeyListener
-{
+class Controller implements ActionListener, MouseListener, KeyListener{
 	//Member variables
 	View view;
 	Model model;
@@ -45,10 +44,8 @@ class Controller implements ActionListener, MouseListener, KeyListener
 		view = v;
 	}
 	
-	public void keyPressed(KeyEvent e)
-	{
-		switch(e.getKeyCode())
-		{
+	public void keyPressed(KeyEvent e){
+		switch(e.getKeyCode()){
 			case KeyEvent.VK_ESCAPE: esc = true; break;
 			case KeyEvent.VK_Q: q = true; break;
 			case KeyEvent.VK_A: 

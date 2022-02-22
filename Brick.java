@@ -16,7 +16,6 @@ public class Brick {
 	int h = 50;
 	
 	
-	
 	//Constructors
 	public Brick() {
 		x = 50;

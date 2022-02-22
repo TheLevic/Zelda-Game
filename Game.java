@@ -10,8 +10,7 @@ import javax.swing.JFrame;
 import java.awt.Toolkit;
 
 //JFrame is the box that surrounds the internal application
-public class Game extends JFrame
-{
+public class Game extends JFrame{
 	//Member variables
 	Model model;
 	View view;
@@ -19,8 +18,7 @@ public class Game extends JFrame
 	
 	
 	//Constructor
-	public Game()
-	{
+	public Game(){
 		model = new Model();
 		controller = new Controller(model);
 		view = new View(controller, model); //Created two new objects. A controller and the view
@@ -35,20 +33,18 @@ public class Game extends JFrame
 	}
 	
 	//Animates the turtle
-	public void run()
-	{
-		while(true)
-		{
+	public void run(){
+		while(true){
 			controller.update();
 			model.update();
 			view.repaint(); // Indirectly calls View.paintComponent
 			Toolkit.getDefaultToolkit().sync(); // Updates screen
 
 			// Go to sleep for 40 miliseconds (25 fps)
-			try
-			{
+			try{
 				Thread.sleep(40);
-			} catch(Exception e) {
+			} 
+			catch(Exception e) {
 				e.printStackTrace();
 				System.exit(1);
 			}
