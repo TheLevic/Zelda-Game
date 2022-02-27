@@ -115,6 +115,11 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		int locationx = e.getX();
 		int locationy = e.getY();
 		model.addBrickToScreen(locationx + view.scrollPositonX, locationy + view.scrollPositonY); //Adds the brick to the screen
+
+		if(e.getY() < 100)
+		{
+			System.out.println("break here");
+		}
 		
 	}
 
