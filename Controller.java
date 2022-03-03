@@ -30,6 +30,11 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		boolean l;
 		//Toggle map
 		boolean mapEdit = false;
+		//Movement
+		boolean up;
+		boolean down;
+		boolean left;
+		boolean right;
 	
 	
 	Controller(Model m) {
@@ -79,6 +84,13 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 					System.out.println("Map editing turned on!");
 				}
 				break;
+
+			//Movement cases
+			case KeyEvent.VK_RIGHT: right = true; break;
+			case KeyEvent.VK_LEFT: left = true; break;
+			case KeyEvent.VK_UP: up = true; break;
+			case KeyEvent.VK_DOWN: down = true; break;
+				
 		}
 
 	}
@@ -89,7 +101,10 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 	{
 		switch(e.getKeyCode())
 		{
-			case KeyEvent.VK_Q: q = false; break;
+			case KeyEvent.VK_RIGHT: right = false; break;
+			case KeyEvent.VK_LEFT: left = false; break;
+			case KeyEvent.VK_UP: up = false; break;
+			case KeyEvent.VK_DOWN: down = false; break;
 			
 		}
 	}
@@ -106,6 +121,18 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		//Exit
 		if(esc) System.exit(0);
 		if (q) System.exit(0);
+		if (right){
+			Link.x += Link.speed;
+		}
+		if (left){
+			Link.x -= Link.speed;
+		}
+		if (up){
+			Link.y -= Link.speed;
+		}
+		if (down){
+			Link.y += Link.speed;
+		}
 	}
 
 

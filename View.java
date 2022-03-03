@@ -21,55 +21,50 @@ class View extends JPanel{
 	JButton b1; 
 	Model model;
 	BufferedImage brick;
-	BufferedImage link;
-	BufferedImage[] link_images;
+	
 
 
 
 	//Position Variables
 	int scrollPositonX = 0;
 	int scrollPositonY = 0;
-	int windowXSize = 700;
-	int windowYSize = 500;
+	//If I have trouble scrolling, might need to change these back to not final.
+	final int windowXSize = 700;
+	final int windowYSize = 500;
 
 	View(Controller c, Model m){
 		model = m;
+		
 
 		//Loading the brick image
-		try {
-			brick = ImageIO.read(new File("brick.jpg"));
-		} catch(Exception e) {
-			e.printStackTrace(System.err);
-			System.exit(1);
-		}
-		//Need to load the image of link
-		link_images = new BufferedImage[25];
-		for (int i = 0; i < 20; i++){
-			String tmp = Integer.toString(i + 1) + ".png";
-			try {
-				link_images[i] = ImageIO.read(new File("Link_Pictures/" + tmp));
-			} catch (Exception e) {
-				System.out.println("Couldn't load image");
-				e.printStackTrace(System.err);
-			}
-			
-		}
-
-		
-		c.setView(this); //Setting the view for the controller
+		brick = loadImage("brick.jpg");
+		//Setting the view for the controller
+		c.setView(this); 
 	}
 
-
+	static BufferedImage loadImage(String imageLocation){
+		BufferedImage tmp = null;
+		try {
+			tmp = ImageIO.read(new File(imageLocation));
+		} catch (Exception e) {
+			System.out.println("Couldn't load images");
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return tmp;
+	}
 	
 	//Method that adds the image and color to the view
 	public void paintComponent(Graphics g){
 		g.setColor(new Color(128, 255, 255));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		
+
 		//Adds the bricks to the screen
 		for(int i = 0; i < Brick.bricks.size(); i++){
 			Brick b = Brick.bricks.get(i);
 			g.drawImage(this.brick, b.x - scrollPositonX, b.y - scrollPositonY, null);
 		}
+		//Drawing link to screen
+		Link.draw(g); //Why is this not working?
 	}
 }

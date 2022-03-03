@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class Model {
 	//Member variables
-	Link link;
 	
 
 	//Constructor
@@ -20,7 +19,7 @@ public class Model {
 	}
 
 	public void update(){
-		
+		Link.update();
 	}
 	
 
