@@ -1,8 +1,8 @@
 /*
  * Levi Crider
  * 2/9/22
- * Map editor
- * Create a game that allows the turtle to move across the screen with arrow keys or mouse clicks
+ * Legend of Zelda
+ * 
  * 
  * 
  */
@@ -55,34 +55,6 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 			case KeyEvent.VK_ESCAPE: esc = true; break;
 			case KeyEvent.VK_Q: q = true; break;
 
-			//Move Left
-			case KeyEvent.VK_A: 
-			if(view.scrollPositonX >= view.windowXSize){
-				view.scrollPositonX -= view.windowXSize;
-			}
-			break;
-
-			//Move right
-			case KeyEvent.VK_D:
-			if(view.scrollPositonX < view.windowXSize){
-				view.scrollPositonX += view.windowXSize;
-			}
-			break;
-
-			//Move up
-			case KeyEvent.VK_W:
-			if(view.scrollPositonY >= view.windowYSize){
-				view.scrollPositonY -= view.windowYSize;
-			}
-			break;
-
-			//Move down
-			case KeyEvent.VK_X:
-			if(view.scrollPositonY < view.windowYSize){
-				view.scrollPositonY += view.windowYSize;
-			}
-
-
 			//Saving
 			case KeyEvent.VK_S:
 				Json saveObject = model.Marshal();
@@ -106,7 +78,6 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 					mapEdit = true;
 					System.out.println("Map editing turned on!");
 				}
-				
 				break;
 		}
 

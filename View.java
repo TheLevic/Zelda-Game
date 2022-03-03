@@ -1,8 +1,8 @@
 /*
  * Levi Crider
  * 2/9/22
- * Map editor
- * Create a game that allows the turtle to move across the screen with arrow keys or mouse clicks
+ * Legend of Zelda
+ * 
  * 
  * 
  */
@@ -21,6 +21,7 @@ class View extends JPanel{
 	JButton b1; 
 	Model model;
 	BufferedImage brick;
+	BufferedImage link;
 
 
 
@@ -35,12 +36,16 @@ class View extends JPanel{
 
 	View(Controller c, Model m){
 		model = m;
+
+		//Loading the brick image
 		try {
 			brick = ImageIO.read(new File("brick.jpg"));
 		} catch(Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
 		}
+		//Need to load the image of link
+		
 		
 		c.setView(this); //Setting the view for the controller
 	}
