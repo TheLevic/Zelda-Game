@@ -3,13 +3,14 @@
  * 2/9/22
  * Legend of Zelda
  * 
- * 
+ * 1-5 is runnning away, 6-10 is running forwards, 11-15 is running left, 16-20 is running right
  * 
  */
 
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
@@ -22,6 +23,7 @@ class View extends JPanel{
 	Model model;
 	BufferedImage brick;
 	BufferedImage link;
+	Image[] link_images;
 
 
 
@@ -30,9 +32,6 @@ class View extends JPanel{
 	int scrollPositonY = 0;
 	int windowXSize = 700;
 	int windowYSize = 500;
-
-
-
 
 	View(Controller c, Model m){
 		model = m;
@@ -45,7 +44,11 @@ class View extends JPanel{
 			System.exit(1);
 		}
 		//Need to load the image of link
-		
+		link_images = new Image[25];
+		for (int i = 0; i < 21; i++){
+			
+		}
+
 		
 		c.setView(this); //Setting the view for the controller
 	}
