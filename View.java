@@ -10,31 +10,33 @@
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.File;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-import java.io.File;
 import javax.swing.JButton;
 
 //JPanel is the content that is inside of the application (Creates the users view)
 class View extends JPanel{
 	//Member variables
 	JButton b1; 
-	BufferedImage brick;
 	Model model;
+	BufferedImage brick;
+
+
 
 	//Position Variables
 	int scrollPositonX = 0;
 	int scrollPositonY = 0;
 	int windowXSize = 700;
 	int windowYSize = 500;
-	char key;
+
+
 
 
 	View(Controller c, Model m){
 		model = m;
-		
 		try {
-			this.brick = ImageIO.read(new File("brick.jpg"));
+			brick = ImageIO.read(new File("brick.jpg"));
 		} catch(Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
@@ -42,6 +44,8 @@ class View extends JPanel{
 		
 		c.setView(this); //Setting the view for the controller
 	}
+
+
 	
 	//Method that adds the image and color to the view
 	public void paintComponent(Graphics g){
@@ -49,8 +53,8 @@ class View extends JPanel{
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
 		//Adds the bricks to the screen
-		for(int i = 0; i < model.bricks.size(); i++){
-			Brick b = model.bricks.get(i);
+		for(int i = 0; i < Brick.bricks.size(); i++){
+			Brick b = Brick.bricks.get(i);
 			g.drawImage(this.brick, b.x - scrollPositonX, b.y - scrollPositonY, null);
 		}
 	}

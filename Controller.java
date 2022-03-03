@@ -25,106 +25,138 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		boolean esc;
 		boolean q;
 		//Move view
-		boolean a;
-		boolean d;
-		boolean w;
-		boolean x;
+		//Save Load
 		boolean s;
 		boolean l;
+		//Toggle map
+		boolean mapEdit = false;
 	
 	
 	Controller(Model m) {
 		model = m;
 	}
 
+
+
 	public void actionPerformed(ActionEvent e) { //method that handles the event
 	}
+
+
 	
 	void setView(View v) { //Setter that sets the view
 		view = v;
 	}
+
+
 	
 	public void keyPressed(KeyEvent e){
 		switch(e.getKeyCode()){
+			//Quitting
 			case KeyEvent.VK_ESCAPE: esc = true; break;
 			case KeyEvent.VK_Q: q = true; break;
-			case KeyEvent.VK_A: 
-				a = true;
-				if(view.scrollPositonX >= view.windowXSize){
-					view.scrollPositonX -= view.windowXSize;
-				}
-				break;
 
+			//Move Left
+			case KeyEvent.VK_A: 
+			if(view.scrollPositonX >= view.windowXSize){
+				view.scrollPositonX -= view.windowXSize;
+			}
+			break;
+
+			//Move right
 			case KeyEvent.VK_D:
-			d = true;
 			if(view.scrollPositonX < view.windowXSize){
 				view.scrollPositonX += view.windowXSize;
 			}
 			break;
 
+			//Move up
 			case KeyEvent.VK_W:
-			w = true;
 			if(view.scrollPositonY >= view.windowYSize){
 				view.scrollPositonY -= view.windowYSize;
 			}
 			break;
 
-			case KeyEvent.VK_X: x = true;
+			//Move down
+			case KeyEvent.VK_X:
 			if(view.scrollPositonY < view.windowYSize){
 				view.scrollPositonY += view.windowYSize;
 			}
-			break;
 
+
+			//Saving
 			case KeyEvent.VK_S:
 				Json saveObject = model.Marshal();
 				saveObject.save("brickLocation.json");
 				System.out.println("Saved");
 				break;
+			//Loading
 			case KeyEvent.VK_L:
 				Json loadObject = Json.load("brickLocation.json");
 				model.Unmarshal(loadObject);
 				System.out.println("Loaded");
-
+				break;
+			
+			//Toggling map edit
+			case KeyEvent.VK_E:
+				if(mapEdit){
+					mapEdit = false;
+					System.out.println("Map editing turned off!");
+				}
+				else{
+					mapEdit = true;
+					System.out.println("Map editing turned on!");
+				}
+				
+				break;
 		}
 
 	}
+
+
 
 	public void keyReleased(KeyEvent e)
 	{
 		switch(e.getKeyCode())
 		{
 			case KeyEvent.VK_Q: q = false; break;
-			case KeyEvent.VK_A: a = false; break;
-			case KeyEvent.VK_D: d = false; break;
-			case KeyEvent.VK_X: x = false; break;
+			
 		}
 	}
+
+
 
 	public void keyTyped(KeyEvent e)
 	{
 	}
+
+
 	
 	void update() {
+		//Exit
 		if(esc) System.exit(0);
 		if (q) System.exit(0);
 	}
+
+
 	
 	public void mousePressed(MouseEvent e)
 	{		
 		//Gets the location of where user clicks
 		int locationx = e.getX();
 		int locationy = e.getY();
-		model.addBrickToScreen(locationx + view.scrollPositonX, locationy + view.scrollPositonY); //Adds the brick to the screen
-
-		if(e.getY() < 100)
-		{
-			System.out.println("break here");
+		if(mapEdit){
+			Brick.addBrickToScreen(locationx + view.scrollPositonX, locationy + view.scrollPositonY); //Adds the brick to the screen
 		}
 		
 	}
+
+
+
+
 
 	public void mouseReleased(MouseEvent e) {    }
 	public void mouseEntered(MouseEvent e) {    }
 	public void mouseExited(MouseEvent e) {    }
 	public void mouseClicked(MouseEvent e) {    }
+
 }

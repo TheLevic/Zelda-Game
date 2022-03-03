@@ -23,16 +23,18 @@ public class Game extends JFrame{
 		controller = new Controller(model);
 		view = new View(controller, model); //Created two new objects. A controller and the view
 		view.addMouseListener(controller);
-		this.setTitle("A3 - Map Editor");
+		this.setTitle("Legend of Zelda");
 		this.setSize(700, 500);
 		this.setFocusable(true);
 		this.getContentPane().add(view);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.addKeyListener(controller);
+		model.loadFile();
 	}
 	
-	//Animates the turtle
+
+	//Runs the game
 	public void run(){
 		while(true){
 			controller.update();
