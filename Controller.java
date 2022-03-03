@@ -4,7 +4,6 @@
  * Legend of Zelda
  * 
  * 
- * 
  */
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
@@ -86,10 +85,18 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 				break;
 
 			//Movement cases
-			case KeyEvent.VK_RIGHT: right = true; break;
-			case KeyEvent.VK_LEFT: left = true; break;
-			case KeyEvent.VK_UP: up = true; break;
-			case KeyEvent.VK_DOWN: down = true; break;
+			case KeyEvent.VK_RIGHT: 
+				right = true; 
+				break;
+			case KeyEvent.VK_LEFT: 
+				left = true; 
+				break;
+			case KeyEvent.VK_UP: 
+				up = true; 
+				break;
+			case KeyEvent.VK_DOWN: 
+				down = true;
+				break;
 				
 		}
 
@@ -121,6 +128,8 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		//Exit
 		if(esc) System.exit(0);
 		if (q) System.exit(0);
+
+		//Moving our character
 		if (right){
 			Link.x += Link.speed;
 		}

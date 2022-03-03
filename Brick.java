@@ -70,5 +70,11 @@ public class Brick {
 		ob.add("bricky", y);
 		return ob;
 	}
+
+	@Override 
+	public String toString()
+	{
+		return "Brick (x,y) = (" + x + ", " + y + ")";
+	}
 	
 }

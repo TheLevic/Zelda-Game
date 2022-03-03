@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class Model {
 	//Member variables
+	Link link;
 	
 
 	//Constructor
