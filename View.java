@@ -10,7 +10,6 @@
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.io.File;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
@@ -23,7 +22,7 @@ class View extends JPanel{
 	Model model;
 	BufferedImage brick;
 	BufferedImage link;
-	Image[] link_images;
+	BufferedImage[] link_images;
 
 
 
@@ -44,8 +43,15 @@ class View extends JPanel{
 			System.exit(1);
 		}
 		//Need to load the image of link
-		link_images = new Image[25];
-		for (int i = 0; i < 21; i++){
+		link_images = new BufferedImage[25];
+		for (int i = 0; i < 20; i++){
+			String tmp = Integer.toString(i + 1) + ".png";
+			try {
+				link_images[i] = ImageIO.read(new File("Link_Pictures/" + tmp));
+			} catch (Exception e) {
+				System.out.println("Couldn't load image");
+				e.printStackTrace(System.err);
+			}
 			
 		}
 
