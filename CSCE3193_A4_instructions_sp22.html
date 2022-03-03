@@ -1,0 +1,252 @@
+
+<!-- saved from url=(0158)https://learn.uark.edu/bbcswebdav/pid-11565602-dt-content-rid-126323203_1/courses/MASTER-1223-THEUA-CSCE-3193-SEC001/CSCE3193_A4_instructions_sp22%281%29.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	<style>
+		.toc {
+			margin-left: 30px;
+		}
+		.code {
+			margin-left: 30px;
+			color:#000000;
+			background-color:#ffffff;
+		}
+		.shell {
+			margin-left: 30px;
+			color:#000000;
+			background-color:#ffffff;
+		}
+	</style>
+</head>
+<body bgcolor="#d8ccdb"><br><br>
+<table align="center" cellpadding="50" border="1" bgcolor="#e8dceb" width="620"><tbody><tr><td>
+
+<h1>Homework 4: Debuggers and Iterators</h1>
+
+<ol>
+	<li><b>Using Eclipse - set a breakpoint</b>:
+		In your Controller.mouseClicked method, add some code that says
+<pre class="shell">		if(e.getY() &lt; 100)
+		{
+			System.out.println("break here");
+		}
+</pre>
+		Save your changes (Ctrl-S).
+		Then, set a breakpoint on the line that prints "break here": Right-click in the margin to the left of that line, and click on "Toggle breakpoint".
+		A blue dot should appear in the margin by that line.
+		</li><br><br>
+
+	<li><b>Trigger your breakpoint</b>:
+		Click on the debug icon (it looks like a bug) to begin debugging your program.
+		If it asks you to select a way to debug it, choose "Java Application", not "Java Applet".
+		Now, when you click near the top of the page, your breakpoint will trigger.
+		If it asks you to confirm a perspective switch, click "Remember my decision", and "Yes".
+		</li><br><br>
+
+	<li><b>Look around</b>:
+		The "Debug" window contains the call stack.
+		(It tells which method called which method until it arrived at your breakpoint.)
+		The "Variables" window tells you the current values in your variables.
+		(Note that the contents of this window changes, depending on which frame of the call stack you select.)
+		The Console window contains the output of your program.
+		(It is currently empty, because your program hasn't printed anything yet.)
+		Click on the "Step over" button (F6).
+		Now, it should print "break here" to the console window.
+		If you see windows for "Outline" or "Welcome", just close them.
+		Notice that your program is now frozen.
+		That is because you have stopped at your breakpoint.
+		Now, remove the breakpoint, then click on "Resume" (the green triangle button).
+		The program will continue running.
+		Now you should know how to attach a debugger to your program, and stop at any point (because you can put the breakpoint wherever you want),
+		under any condition (because you can change the "if" statement to any condition you want).
+		When you are done debugging, just close the IDE, and make sure you can still build your code from the command line.<br><br>
+
+		In this class, you must be able to code with and IDE.
+		You must also be able to code without an IDE.
+		And, you must be able to switch back and forth between the two approaches without much difficulty.
+		You should not be afraid to open an IDE when you need to do some debugging.
+		However, IDEs seem to break themselves at random times.
+		If your IDE breaks, and you don't know how to write code without it, I will have no sympathy for you.
+		</li><br><br>
+
+	<li><b>Clean up your code from Assignment 3</b>.
+		Copy your map editor program.  Change the title of the window to something appropriate for this assignment.
+		Make sure that you like the map you've created - spend a little bit of time fixing it since we will be using it for the next couple of assignments.  We will leave editing capability in our map with a key press toggle, so you can always fix something that's not working at runtime.
+		The same requirements for the map as before are still in effect.
+
+		Change your code to automatically load up your map without any user input, and map-editing capabilities should be disabled upon the game starting.  When the user clicks,
+		there should be nothing happening on the screen for right now.  Add a boolean variable that allows you to switch back and forth between the map editing and 'playing' 
+		(tie it to the letter 'e' for editing).  This will allow you to more easily update your map.  This would be an appropriate place to put a println statement so the user knows which mode they're currenting running.
+		
+		Now that we're adding our character, we will use his movement to switch between rooms.  Remove (or comment out) our previous room movement keys (a, w, d, x) so that we can only move between rooms based off our character's location.<br><br>
+
+	</li><li><b>Start the video game</b>.
+		Add a class for Link (update your build script!), and add an instance of Link to your Model.
+		Add some code to the View to draw Link (or a character of your choice).
+		There are some images on Blackboard that you can use. (If you prefer, you can draw your own, or find some images you like better.)<br>
+		When the user presses the arrow keys, cycle through the images so that Link is appropriately animated.  You will load 20+ images to take care of his animation (5 images per direction).
+		(Link should not keep moving when the user stops pressing the arrow keys.)<br><br>
+
+		An array would be a good structure for holding images. For example:
+<pre class="code">class View
+{
+	Image[] link_images;
+
+	View()
+	{
+		link_images = new Image[5];
+		link_images[0] = loadImage("link1.png");
+		link_images[1] = loadImage("link2.png");
+		link_images[2] = loadImage("link3.png");
+		link_images[3] = loadImage("link4.png");
+		link_images[4] = loadImage("link5.png");
+	}
+}
+</pre>
+		(The implementation of the "loadImage" method in this example is not shown.  Also note that this example only uses 5 images instead of 20 - you may want to consider writing a loop to load all of the images.)
+
+		</li><br><br>
+
+	<li><b>Add map movement</b>.
+		Link should be able to move around the screen and go through the doorways to the other rooms.  When he goes to the other rooms, he should appear to have just walked through the doorway and appear at that point on the screen.
+
+		Add a "double" member variable to store Link's speed. Example:
+<pre class="code">class Link
+{
+	int x;
+	int y;
+	double speed;
+}
+</pre>
+		If you haven't already, add a method named "update" to your Link class, and make Model.update call Link.update.  For right now, Link's update function will be empty, but it will be important later!
+<pre class="code">void update()
+{	}
+</pre>
+		</li><br><br>
+		
+	<li><b>Add custom toString() methods to your objects</b>.
+		We know that every class implicitly inherits from Object, which has a toString() method.  If we print out the brick using the default toString() method from Object, it will print out the memory address of where our Brick is located.  Instead, let's <b>explicitly</b> override that method using the appropriate notation so that if we use the toString() method, useful information is printed out.
+<pre class="code">@Override 
+public String toString()
+{
+	return "Brick (x,y) = (" + x + ", " + y + ")";
+}
+</pre>
+		This can be very useful for debugging the next step!  Be sure to add a toString() method to both of your object classes (Link and Brick), and any other objects that you are currently using.
+	</li><br><br>
+
+	<li><b>Make bricks stop Link's movement</b>.
+		Add code to detect when Link collides with a Brick.
+		Link should not be able to pass through Bricks (either horizontally or vertically).
+		Here is some pseudocode that will return true <a href="https://en.wikipedia.org/wiki/If_and_only_if">iff</a> two rectangles, <b>a</b> and <b>b</b>, overlap:
+<pre class="code">if(a.right_side &lt; b.left_side)
+	return false;
+if(a.left_side &gt; b.right_side)
+	return false;
+if(a.bottom_side &lt; b.top_side) // assumes bigger is downward
+	return false;
+if(a.top_side &gt; b.bottom_side) // assumes bigger is downward
+	return false;
+return true;
+</pre>
+		When Link collides with a Brick, repel him back out of the brick.
+		That is, if his position before entering the brick was left of the brick, then he should snap to be adjacent to the brick on the left side.
+		If his position before entering the brick was above the brick, then he should snap to be adjacent to the brick on the top side.
+		If his position before entering the brick was right or the brick, then he should snap to be adjacent to the brick on the right side.
+		And, if his position before entering the brick was below the brick, then he should snap to be adjacent to the brick on the bottom side.
+		</li><br><br>
+
+	<li><b>Use an iterator somewhere in your program</b>.
+		Study the Java API doc about ArrayList.
+		Note that the ArrayList class inherits an "iterator()" method from its super class (the class it extends).
+		Learn how to use an iterator, and use one somewhere in your program.
+		</li><br><br>
+
+	<li><b>Use lazy-loading with all the images</b>.
+		Instead of holding onto your image information in the View, let's make each type of object
+		hold its own image(s).  Use static member variables in your Link and Brick classes to hold their corresponding images.
+		Initialize them to null.
+		In the constructor for these classes, if the image is null, load the image.
+		Thus, no image should ever be loaded more than once, no matter how many times the class is instantiated.
+		And, if some class is never instantiated, its image should never be loaded.
+		You'll need to make sure to update your drawing function as well to now access where these 
+		images are being kept.  You could also consider creating a draw function for each of your classes since they already know how to draw themselves if you wanted.
+		Hint: Remember, you can use a static method in a class without an instance of that class.
+		</li><br><br>
+
+	<li><b>Submit</b>
+		Make a zip archive called Assignment4.zip containing your source files, image files, map.json file, and a working build script.  Do not include any additional folders.  You <b>must</b> include all images you are using and your map file.
+		Do not submit any .class files or .jar files. Your build script should build and execute the program appropriately.
+		Test your zip file before you submit it by extracting into a separate folder and running your build script.
+		Finally, go the course web site on Blackboard (<a href="https://learn.uark.edu/">https://learn.uark.edu/</a>) and submit your zip archive for Assignment4.</li><br><br>
+</ol>
+
+
+
+
+
+
+
+
+
+<h2>FAQ:</h2>
+<ol>
+	<li><b>Q: I'm getting an IIOException that says "Can't read input file!". What should I do?</b><br>
+		Make sure you know what directory you are executing within.
+		Here is a command to print the current working directory:
+<pre class="code">System.out.println("cwd=" + System.getProperty("user.dir"));
+</pre>
+		If you are running inside an IDE, the problem is probably caused by the IDE starting in an unexpected folder.
+		The solution is to tell the IDE what folder to start in.
+		Eclipse &lt;sarcasm&gt;conveniently&lt;/sarcasm&gt; places this setting in project-&gt;properties-&gt;Run/Debug Settings-&gt;Default configuration-&gt;Edit-&gt;Arguments-&gt;Working Directory-&gt;Other.
+		</li><br><br>
+
+	<li><b>Q: I'm getting an error about incompatible types. What is the problem?</b><br>
+		A: If your code looks like this,
+<pre class="code">Iterator it = bricks.iterator();
+</pre>
+change it to
+<pre class="code">Iterator&lt;Brick&gt; it = bricks.iterator();
+</pre>
+		</li><br><br>
+
+
+	<li><b>Q: I want to add sound effects, just for fun. How would I do that?</b><br>
+		A: The "AudioSystem" class enables sound effects.
+		One difficulty that occurs with the AudioSystem class is that it can only play one sound clip at a time.
+		To work around this issue, here is a class that loads multiple copies of a single sound effect,
+		then alternates among them when you play it.
+		So, if you have a sound that rarely occurs, one copy may be sufficient.
+		If you have a sound that you plan to play in rapid succession, you might want 3 or 4 copies for it to alternate among when playing the sound:
+<pre class="code">	class MySoundClip {
+		Clip[] clips;
+		int pos;
+
+		MySoundClip(String filename, int copies) throws Exception {
+		  clips = new Clip[copies];
+		  for(int i = 0; i &lt; copies; i++) {
+		    AudioInputStream inputStream = 
+		    AudioSystem.getAudioInputStream(new File(filename));
+		    AudioFormat format = inputStream.getFormat();
+		    DataLine.Info info =
+		      new DataLine.Info(Clip.class, format);
+		    clips[i] = (Clip)AudioSystem.getLine(info);
+		    clips[i].open(inputStream);
+		  }
+		  pos = 0;
+		}
+
+		void play() {
+			clips[pos].setFramePosition(0);
+			clips[pos].loop(0);
+			if(++pos &gt;= clips.length)
+				pos = 0;
+		}
+	}
+</pre>
+		</li><br><br>
+
+</ol>
+
+</td></tr></tbody></table>
+
+</body></html>
