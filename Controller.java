@@ -130,9 +130,9 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		if (q) System.exit(0);
 
 		//Moving our character
+		//0-4 is runnning away, 5-9 is running forwards, 10-14 is running left, 15-19 is running right
 		if (right){
 			Link.x += Link.speed;
-			//Need to cycle 15-19
 			if (Link.AnimationNum >= 19 || Link.AnimationNum < 15){
 				Link.AnimationNum = 15;	
 			}

@@ -1,10 +1,9 @@
-import java.awt.image.BufferedImage;
-import java.awt.Graphics;
+// import java.awt.image.BufferedImage;
+// import java.awt.Graphics;
 /*
  * Levi Crider
  * 2/9/22
  * Legend of Zelda
-* 0-4 is runnning away, 5-9 is running forwards, 10-14 is running left, 15-19 is running right
  * 
  * 
  */
