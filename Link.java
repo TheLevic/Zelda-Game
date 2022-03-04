@@ -15,7 +15,7 @@ public class Link {
     final int h = 70;
     static double speed = 4;
     final int maxAnimationNum = 23;
-    static int AnimationNum = 1;
+    static int AnimationNum = 0;
     //Make sure that our array of sprites is populated
 
     Link(){

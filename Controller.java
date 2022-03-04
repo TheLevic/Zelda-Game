@@ -132,15 +132,32 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		//Moving our character
 		if (right){
 			Link.x += Link.speed;
+			//Need to cycle 15-19
+			if (Link.AnimationNum >= 19 || Link.AnimationNum < 15){
+				Link.AnimationNum = 15;	
+			}
+			Link.AnimationNum++;
 		}
 		if (left){
 			Link.x -= Link.speed;
+			if (Link.AnimationNum >= 14 || Link.AnimationNum < 10){
+				Link.AnimationNum = 10;	
+			}
+			Link.AnimationNum++;
 		}
 		if (up){
 			Link.y -= Link.speed;
+			if (Link.AnimationNum >= 4){
+				Link.AnimationNum = 0;	
+			}
+			Link.AnimationNum++;
 		}
 		if (down){
 			Link.y += Link.speed;
+			if (Link.AnimationNum >= 9 || Link.AnimationNum < 5){
+				Link.AnimationNum = 5;	
+			}
+			Link.AnimationNum++;
 		}
 	}
 
