@@ -1,5 +1,5 @@
-// import java.awt.image.BufferedImage;
-// import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.awt.Graphics;
 /*
  * Levi Crider
  * 2/9/22
@@ -8,33 +8,42 @@
  * 
  */
 public class Link {
-    static int x = 100;
-    static int y = 100;
-    static int prevX;
-    static int prevY;
+
+    //Variables
+    static int x;
+    static int y;
     final int w = 55;
     final int h = 70;
     static double speed = 8;
-    final int maxAnimationNum = 23;
     static int AnimationNum = 0;
-    //Make sure that our array of sprites is populated
+    static BufferedImage[] linkImages;
 
     Link(){
         x = 100;
         y = 100;
-        prevX = x;
-        prevY = y;
+        loadImage();
     }
 
     public static void update(){
         
     }
 
+    private void loadImage(){
+        if (linkImages == null){
+            linkImages = new BufferedImage[25];
+            for (int i = 1; i < 25; i++){
+                String tmp = Integer.toString(i) + ".png";
+                linkImages[i - 1] = View.loadImage("linkPictures/" + tmp);
+                System.out.println("Loading image" + i);
+            }
+        }
+    }
+
     
 
-    // static void draw(Graphics g){
-    //     g.drawImage(link_images[AnimationNum], x, y, null);
-    // }
+    static void draw(Graphics g){
+        g.drawImage(linkImages[AnimationNum], x, y, null);
+    }
 
     @Override 
     public String toString()

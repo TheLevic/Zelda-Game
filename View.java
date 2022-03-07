@@ -20,7 +20,6 @@ class View extends JPanel{
 	JButton b1; 
 	Model model;
 	BufferedImage brick;
-	static BufferedImage[] linkImages;
 	
 
 
@@ -34,16 +33,10 @@ class View extends JPanel{
 
 	View(Controller c, Model m){
 		model = m;
-		linkImages = new BufferedImage[24];
 
 		//Loading the brick image
 		brick = loadImage("brick.jpg");
-		//Loading Links image
-		for (int i = 1; i < 25; i++){
-			String tmp = Integer.toString(i) + ".png";
-			linkImages[i - 1] = View.loadImage("linkPictures/" + tmp);
-			System.out.println("Loading image" + i);
-		}
+		
 		//Setting the view for the controller
 		c.setView(this); 
 	}
@@ -71,7 +64,6 @@ class View extends JPanel{
 			g.drawImage(this.brick, b.x - scrollPositonX, b.y - scrollPositonY, null);
 		}
 		//Drawing link to screen
-		// Link.draw(g); //Why is this not working?
-		g.drawImage(linkImages[Link.AnimationNum], Link.x, Link.y,null);
+		model.link.draw(g);
 	}
 }

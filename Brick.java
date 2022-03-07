@@ -76,5 +76,11 @@ public class Brick {
 	{
 		return "Brick (x,y) = (" + x + ", " + y + ")";
 	}
+
+	// void draw(Graphics g){
+	// 	for(int i = 0; i < bricks.size(); i++){
+	// 		g.drawImage(brick, x - View.scrollPositonX, y - View.scrollPositonY, null);
+	// 	}
+	// }
 	
 }
