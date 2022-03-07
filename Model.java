@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Model {
 	//Member variables
 	Link link;
+	public static ArrayList<Brick> bricks = new ArrayList<Brick>();
 
 	//Constructor
 	Model(){
@@ -21,7 +22,7 @@ public class Model {
 	public void update(){
 		Link.update();
 
-		// for (int i = 0; i < Brick.bricks.size(); i++){
+		// for (int i = 0; i < bricks.size(); i++){
 		// 	boolean collision = isThereACollision(link, Brick.bricks.get(i));
 		// 	if (collision){
 		// 		System.out.println("Colliding");
@@ -35,16 +36,16 @@ public class Model {
 		Json ob = Json.newObject();
 		Json tmpList = Json.newList();
         ob.add("brick", tmpList);
-        for(int i = 0; i < Brick.bricks.size(); i++)
-            tmpList.add(Brick.bricks.get(i).Marshal());
+        for(int i = 0; i < bricks.size(); i++)
+            tmpList.add(bricks.get(i).Marshal());
         return ob;
 	}
 
 	void Unmarshal(Json ob){
-		Brick.bricks = new ArrayList<Brick>(); //Making a new list for our bricks
+		bricks = new ArrayList<Brick>(); //Making a new list for our bricks
 		Json tmplist = ob.get("brick"); //Getting bricks from our file
 		for(int i = 0; i < tmplist.size(); i++){
-            Brick.bricks.add(new Brick(tmplist.get(i)));
+            bricks.add(new Brick(tmplist.get(i)));
     
 		}
 	}

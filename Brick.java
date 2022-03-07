@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.awt.Graphics;
 
 /*
  * Levi Crider
@@ -10,9 +11,12 @@ import java.util.ArrayList;
  */
 
 public class Brick {
-	public static ArrayList<Brick> bricks = new ArrayList<Brick>();
+
+	//Variables
+	
 	//Location of the brick
 	int x, y, w = 50, h = 50;
+	BufferedImage image = View.loadImage("brick.jpg");
 	
 	
 	//Constructors
@@ -30,7 +34,7 @@ public class Brick {
 		Brick n = new Brick(x,y);
 		//Brick detection/deletion
 		if (!detectBrick(x,y)) {
-			Brick.bricks.add(n);
+			Model.bricks.add(n);
 		}
 		else {
 			n = null;
@@ -43,13 +47,13 @@ public class Brick {
 
 	//Makes sure we aren't placing two bricks in the same location
 	public static boolean detectBrick(int locationx, int locationy) { //Location x and y are the snap to grid locations of the brick we are trying to place
-		if(bricks.size() == 0) {
+		if(Model.bricks.size() == 0) {
 			return false;
 		}
-		for (int i = 0; i < bricks.size(); i++) {
-			Brick testing = bricks.get(i); //Testing our new brick vs the existing bricks
+		for (int i = 0; i < Model.bricks.size(); i++) {
+			Brick testing = Model.bricks.get(i); //Testing our new brick vs the existing bricks
 			if ((locationx >= testing.x && locationx < testing.x + testing.w && locationy >= testing.y && locationy < testing.y + testing.h)) {
-				bricks.remove(i);
+				Model.bricks.remove(i);
 				return true;
 			}
 		}
@@ -77,10 +81,8 @@ public class Brick {
 		return "Brick (x,y) = (" + x + ", " + y + ")";
 	}
 
-	// void draw(Graphics g){
-	// 	for(int i = 0; i < bricks.size(); i++){
-	// 		g.drawImage(brick, x - View.scrollPositonX, y - View.scrollPositonY, null);
-	// 	}
-	// }
+	void draw(Graphics g){
+		g.drawImage(image, x - View.scrollPositonX, y - View.scrollPositonY, null);
+	}
 	
 }

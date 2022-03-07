@@ -19,7 +19,7 @@ class View extends JPanel{
 	//Member variables
 	JButton b1; 
 	Model model;
-	BufferedImage brick;
+	// BufferedImage brick;
 	
 
 
@@ -35,7 +35,7 @@ class View extends JPanel{
 		model = m;
 
 		//Loading the brick image
-		brick = loadImage("brick.jpg");
+		// brick = loadImage("brick.jpg");
 		
 		//Setting the view for the controller
 		c.setView(this); 
@@ -58,12 +58,14 @@ class View extends JPanel{
 		g.setColor(new Color(128, 255, 255));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
+
 		//Adds the bricks to the screen
-		for(int i = 0; i < Brick.bricks.size(); i++){
-			Brick b = Brick.bricks.get(i);
-			g.drawImage(this.brick, b.x - scrollPositonX, b.y - scrollPositonY, null);
+		for (int i = 0; i < model.bricks.size(); i++){
+			model.bricks.get(i).draw(g);
 		}
+
 		//Drawing link to screen
 		model.link.draw(g);
+
 	}
 }
