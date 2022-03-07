@@ -23,7 +23,6 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		//Quit
 		boolean esc;
 		boolean q;
-		//Move view
 		//Save Load
 		boolean s;
 		boolean l;
@@ -133,27 +132,60 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		//0-4 is runnning away, 5-9 is running forwards, 10-14 is running left, 15-19 is running right
 		if (right){
 			Link.x += Link.speed;
+			//Moving the window when we goes through a right door
+			if(Link.x == View.windowXSize){
+				Link.x = Link.x - View.windowXSize;
+				View.scrollPositonX += View.windowXSize;
+			}
+			//Animating the character
 			if (Link.AnimationNum >= 19 || Link.AnimationNum < 15){
 				Link.AnimationNum = 15;	
 			}
 			Link.AnimationNum++;
 		}
+
 		if (left){
 			Link.x -= Link.speed;
+
+			//Moving the window when we goes through a left door
+			if(Link.x == 0){
+				Link.x = View.windowXSize;
+				View.scrollPositonX -= View.windowXSize;
+			}
+
+			//Animating the character
 			if (Link.AnimationNum >= 14 || Link.AnimationNum < 10){
 				Link.AnimationNum = 10;	
 			}
 			Link.AnimationNum++;
 		}
+
 		if (up){
 			Link.y -= Link.speed;
+
+			//Moving the window when we goes through an up door
+			if(Link.y == 0){
+				Link.y = View.windowYSize;
+				View.scrollPositonY -=View.windowYSize;
+			}
+
+			//Animating the character
 			if (Link.AnimationNum >= 4){
 				Link.AnimationNum = 0;	
 			}
 			Link.AnimationNum++;
 		}
+
 		if (down){
 			Link.y += Link.speed;
+
+			//Moving the window when we goes through an down door
+			if(Link.y == View.windowYSize){
+				Link.y -= View.windowYSize;
+				View.scrollPositonY +=View.windowYSize;
+			}
+
+			//Animating the character
 			if (Link.AnimationNum >= 9 || Link.AnimationNum < 5){
 				Link.AnimationNum = 5;	
 			}

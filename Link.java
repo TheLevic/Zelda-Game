@@ -10,9 +10,11 @@
 public class Link {
     static int x = 100;
     static int y = 100;
+    static int prevX;
+    static int prevY;
     final int w = 55;
     final int h = 70;
-    static double speed = 4;
+    static double speed = 8;
     final int maxAnimationNum = 23;
     static int AnimationNum = 0;
     //Make sure that our array of sprites is populated
@@ -20,7 +22,8 @@ public class Link {
     Link(){
         x = 100;
         y = 100;
-        
+        prevX = x;
+        prevY = y;
     }
 
     public static void update(){

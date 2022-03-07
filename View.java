@@ -26,11 +26,11 @@ class View extends JPanel{
 
 
 	//Position Variables
-	int scrollPositonX = 0;
-	int scrollPositonY = 0;
+	static int scrollPositonX = 0;
+	static int scrollPositonY = 0;
 	//If I have trouble scrolling, might need to change these back to not final.
-	final int windowXSize = 700;
-	final int windowYSize = 500;
+	final static int windowXSize = 700;
+	final static int windowYSize = 500;
 
 	View(Controller c, Model m){
 		model = m;
