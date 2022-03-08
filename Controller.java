@@ -131,6 +131,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		//Moving our character
 		//0-4 is runnning away, 5-9 is running forwards, 10-14 is running left, 15-19 is running right
 		if (right){
+			Link.prevX = Link.x;
 			Link.x += Link.speed;
 			//Moving the window when we goes through a right door
 			if(Link.x == View.windowXSize){
@@ -145,6 +146,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		}
 
 		if (left){
+			Link.prevX = Link.x;
 			Link.x -= Link.speed;
 
 			//Moving the window when we goes through a left door
@@ -201,7 +203,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		int locationx = e.getX();
 		int locationy = e.getY();
 		if(mapEdit){
-			Brick.addBrickToScreen(locationx + view.scrollPositonX, locationy + view.scrollPositonY); //Adds the brick to the screen
+			Brick.addBrickToScreen(locationx + View.scrollPositonX, locationy + View.scrollPositonY); //Adds the brick to the screen
 		}
 		
 	}

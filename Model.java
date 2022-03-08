@@ -20,8 +20,7 @@ public class Model {
 	}
 
 	public void update(){
-		Link.update();
-
+		// link.update();
 		for (int i = 0; i < bricks.size(); i++){
 			boolean collision = isThereACollision(link, bricks.get(i));
 			if (collision){
@@ -62,16 +61,16 @@ public class Model {
 
 	//Checking collisions between bricks and Link
 	public boolean isThereACollision(Link l, Brick b){
-		if (l.x + l.w < b.x){
+		if (Link.x + Link.w < b.x){
 			return false;
 		}
-		if (l.x > b.x + b.w){
+		if (Link.x > b.x + b.w){
 			return false;
 		}
-		if(l.y + l.h < b.y){
+		if(Link.y + Link.h < b.y){
 			return false;
 		}
-		if (l.y > b.y + b.h){
+		if (Link.y > b.y + b.h){
 			return false;
 		}
 		return true;
