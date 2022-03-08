@@ -19,24 +19,15 @@ class View extends JPanel{
 	//Member variables
 	JButton b1; 
 	Model model;
-	// BufferedImage brick;
-	
-
-
-
 	//Position Variables
 	static int scrollPositonX = 0;
 	static int scrollPositonY = 0;
-	//If I have trouble scrolling, might need to change these back to not final.
 	final static int windowXSize = 700;
 	final static int windowYSize = 500;
 
 	View(Controller c, Model m){
 		model = m;
 
-		//Loading the brick image
-		// brick = loadImage("brick.jpg");
-		
 		//Setting the view for the controller
 		c.setView(this); 
 	}

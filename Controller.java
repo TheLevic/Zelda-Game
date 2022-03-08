@@ -194,6 +194,8 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		
 	}
 
+
+	//Making sure that the view stays in bounds
 	void viewIncreaseX(){
 		if (Link.x == View.windowXSize){
 			View.scrollPositonX += View.windowXSize;
