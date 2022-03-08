@@ -16,13 +16,14 @@ public class Brick {
 	
 	//Location of the brick
 	int x, y, w = 50, h = 50;
-	BufferedImage image = View.loadImage("brick.jpg");
+	static BufferedImage image;
 	
 	
 	//Constructors
 	public Brick(int locationx, int locationy) {
 		this.x = locationx;
 		this.y = locationy;
+		image = View.loadImage("brick.jpg");
 	}
 
 
@@ -65,6 +66,7 @@ public class Brick {
 	Brick(Json ob){
 		x = (int)ob.getLong("brickx");
 		y = (int)ob.getLong("bricky");
+		image = View.loadImage("brick.jpg");
 	}
 
 	//Marshalling Methods

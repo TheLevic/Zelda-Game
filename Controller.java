@@ -124,20 +124,18 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 
 	
 	void update() {
+		model.link.savePrev();
+		System.out.println("View X: " + View.scrollPositonX);
+		System.out.println("View Y: " + View.scrollPositonY);
 		//Exit
 		if(esc) System.exit(0);
 		if (q) System.exit(0);
-
 		//Moving our character
 		//0-4 is runnning away, 5-9 is running forwards, 10-14 is running left, 15-19 is running right
 		if (right){
-			Link.prevX = Link.x;
 			Link.x += Link.speed;
 			//Moving the window when we goes through a right door
-			if(Link.x == View.windowXSize){
-				Link.x = Link.x - View.windowXSize;
-				View.scrollPositonX += View.windowXSize;
-			}
+			viewIncreaseX();
 			//Animating the character
 			if (Link.AnimationNum >= 19 || Link.AnimationNum < 15){
 				Link.AnimationNum = 15;	
@@ -146,14 +144,10 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		}
 
 		if (left){
-			Link.prevX = Link.x;
 			Link.x -= Link.speed;
 
 			//Moving the window when we goes through a left door
-			if(Link.x == 0){
-				Link.x = View.windowXSize;
-				View.scrollPositonX -= View.windowXSize;
-			}
+			viewDecreaseX();
 
 			//Animating the character
 			if (Link.AnimationNum >= 14 || Link.AnimationNum < 10){
@@ -166,10 +160,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 			Link.y -= Link.speed;
 
 			//Moving the window when we goes through an up door
-			if(Link.y == 0){
-				Link.y = View.windowYSize;
-				View.scrollPositonY -=View.windowYSize;
-			}
+			viewDecreaseY();
 
 			//Animating the character
 			if (Link.AnimationNum >= 4){
@@ -182,10 +173,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 			Link.y += Link.speed;
 
 			//Moving the window when we goes through an down door
-			if(Link.y == View.windowYSize){
-				Link.y -= View.windowYSize;
-				View.scrollPositonY +=View.windowYSize;
-			}
+			viewIncraseY();
 
 			//Animating the character
 			if (Link.AnimationNum >= 9 || Link.AnimationNum < 5){
@@ -206,6 +194,28 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 			Brick.addBrickToScreen(locationx + View.scrollPositonX, locationy + View.scrollPositonY); //Adds the brick to the screen
 		}
 		
+	}
+
+	void viewIncreaseX(){
+		if (Link.x == View.windowXSize){
+			View.scrollPositonX += View.windowXSize;
+		}
+	}
+	void viewDecreaseX(){
+		if (Link.x == View.windowXSize){
+			View.scrollPositonX -= View.windowXSize;
+		}
+
+	}
+	void viewIncraseY(){
+		if (Link.y == View.windowYSize){
+			View.scrollPositonY += View.windowYSize;
+		}
+	}
+	void viewDecreaseY(){
+		if (Link.y == View.windowYSize){
+			View.scrollPositonY -= View.windowYSize;
+		}
 	}
 
 

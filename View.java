@@ -58,7 +58,6 @@ class View extends JPanel{
 		g.setColor(new Color(128, 255, 255));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
-
 		//Adds the bricks to the screen
 		for (int i = 0; i < Model.bricks.size(); i++){
 			Model.bricks.get(i).draw(g);

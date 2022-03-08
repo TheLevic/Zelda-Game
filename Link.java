@@ -29,19 +29,34 @@ public class Link {
     }
 
     public void update(){
-        getOutOfBrick();
+        System.out.println(this);
     }
 
-        void getOutOfBrick(){
-        for (int i = 0; i < Model.bricks.size(); i++){
-            if (x + w >= Model.bricks.get(i).x && x <= Model.bricks.get(i).x + Model.bricks.get(i).w){
-                x = prevX;
-            }
-            //If his feet are in a brick, or his head is in a brick, get him out
-            if (y + h >= Model.bricks.get(i).y && y <= Model.bricks.get(i).y + Model.bricks.get(i).h){
-                y = prevY;
-            }
+    void getOutOfBrick(Brick b){
+        //If he's going right into a brick
+        if (x + w >= b.x && prevX + w <= b.x){
+            x = prevX;
         }
+        //If he's going left into a brick
+        if (x <= b.x + b.w && prevX >= b.x + b.w){
+            x = prevX;
+        }
+
+        //If his head is in a brick
+        if(y <= b.y + b.h && prevY >= b.y + b.h){
+            y = prevY;
+        }
+
+        //If his feet are in a brick
+        if (y + h >= b.y && prevY + h <= b.y){
+            y = prevY;
+        }
+
+    }
+
+    void savePrev(){
+        prevX = x;
+        prevY = y;
     }
 
     private void loadImage(){
@@ -58,7 +73,7 @@ public class Link {
     
 
     void draw(Graphics g){
-        g.drawImage(linkImages[AnimationNum], x, y, null);
+        g.drawImage(linkImages[AnimationNum], x - View.scrollPositonX, y - View.scrollPositonY, null);
     }
 
     @Override 
