@@ -26,8 +26,6 @@ public class Model {
 			boolean collision = isThereACollision(link, bricks.get(i));
 			if (collision){
 				link.getOutOfBrick(bricks.get(i));
-				System.out.println(bricks.get(i).toString());
-				System.out.println("\n\n");
 			}
 		}
 	}

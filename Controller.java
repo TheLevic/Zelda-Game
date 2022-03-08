@@ -125,8 +125,6 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 	
 	void update() {
 		model.link.savePrev();
-		System.out.println("View X: " + View.scrollPositonX);
-		System.out.println("View Y: " + View.scrollPositonY);
 		//Exit
 		if(esc) System.exit(0);
 		if (q) System.exit(0);

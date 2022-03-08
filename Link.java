@@ -29,7 +29,6 @@ public class Link {
     }
 
     public void update(){
-        System.out.println(this);
     }
 
     void getOutOfBrick(Brick b){
