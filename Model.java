@@ -22,19 +22,24 @@ public class Model {
 	public void update(){
 		Link.update();
 
-		// for (int i = 0; i < bricks.size(); i++){
-		// 	boolean collision = isThereACollision(link, Brick.bricks.get(i));
-		// 	if (collision){
-		// 		System.out.println("Colliding");
-		// 	}
-		// }
+		for (int i = 0; i < bricks.size(); i++){
+			boolean collision = isThereACollision(link, bricks.get(i));
+			if (collision){
+				System.out.println(bricks.get(i).toString());
+				System.out.println("\n\n");
+			}
+		}
 	}
+
+	
 	
 
 	//Marshalling methods
 	Json Marshal(){
 		Json ob = Json.newObject();
-		Json tmpList = Json.newList();
+		Json tmpList = Json.newList();//Checking collisions between bricks and Link
+	
+	
         ob.add("brick", tmpList);
         for(int i = 0; i < bricks.size(); i++)
             tmpList.add(bricks.get(i).Marshal());
