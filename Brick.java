@@ -1,4 +1,5 @@
 import java.awt.image.BufferedImage;
+import java.util.Iterator;
 import java.awt.Graphics;
 
 /*
@@ -46,15 +47,16 @@ public class Brick {
 
 
 
-	//Makes sure we aren't placing two bricks in the same location
+	//Makes sure we aren't placing two bricks in the same location (USING ITERATOR HERE)
 	public static boolean detectBrick(int locationx, int locationy) { //Location x and y are the snap to grid locations of the brick we are trying to place
 		if(Model.bricks.size() == 0) {
 			return false;
 		}
-		for (int i = 0; i < Model.bricks.size(); i++) {
-			Brick testing = Model.bricks.get(i); //Testing our new brick vs the existing bricks
+		Iterator<Brick> it = Model.bricks.iterator();
+		while (it.hasNext()){
+			Brick testing = it.next(); //Testing our new brick vs the existing bricks
 			if ((locationx >= testing.x && locationx < testing.x + testing.w && locationy >= testing.y && locationy < testing.y + testing.h)) {
-				Model.bricks.remove(i);
+				it.remove();
 				return true;
 			}
 		}
