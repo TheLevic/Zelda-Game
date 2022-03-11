@@ -131,53 +131,53 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		//Moving our character
 		//0-4 is runnning away, 5-9 is running forwards, 10-14 is running left, 15-19 is running right
 		if (right){
-			Link.x += Link.speed;
+			model.link.x += model.link.speed;
 			//Moving the window when we goes through a right door
 			viewIncreaseX();
 			//Animating the character
-			if (Link.AnimationNum >= 19 || Link.AnimationNum < 15){
-				Link.AnimationNum = 15;	
+			if (model.link.AnimationNum >= 19 || model.link.AnimationNum < 15){
+				model.link.AnimationNum = 15;	
 			}
-			Link.AnimationNum++;
+			model.link.AnimationNum++;
 		}
 
 		if (left){
-			Link.x -= Link.speed;
+			model.link.x -= model.link.speed;
 
 			//Moving the window when we goes through a left door
 			viewDecreaseX();
 
 			//Animating the character
-			if (Link.AnimationNum >= 14 || Link.AnimationNum < 10){
-				Link.AnimationNum = 10;	
+			if (model.link.AnimationNum >= 14 || model.link.AnimationNum < 10){
+				model.link.AnimationNum = 10;	
 			}
-			Link.AnimationNum++;
+			model.link.AnimationNum++;
 		}
 
 		if (up){
-			Link.y -= Link.speed;
+			model.link.y -= model.link.speed;
 
 			//Moving the window when we goes through an up door
 			viewDecreaseY();
 
 			//Animating the character
-			if (Link.AnimationNum >= 4){
-				Link.AnimationNum = 0;	
+			if (model.link.AnimationNum >= 4){
+				model.link.AnimationNum = 0;	
 			}
-			Link.AnimationNum++;
+			model.link.AnimationNum++;
 		}
 
 		if (down){
-			Link.y += Link.speed;
+			model.link.y += model.link.speed;
 
 			//Moving the window when we goes through an down door
 			viewIncraseY();
 
 			//Animating the character
-			if (Link.AnimationNum >= 9 || Link.AnimationNum < 5){
-				Link.AnimationNum = 5;	
+			if (model.link.AnimationNum >= 9 || model.link.AnimationNum < 5){
+				model.link.AnimationNum = 5;	
 			}
-			Link.AnimationNum++;
+			model.link.AnimationNum++;
 		}
 	}
 
@@ -197,23 +197,23 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 
 	//Making sure that the view stays in bounds
 	void viewIncreaseX(){
-		if (Link.x == View.windowXSize){
+		if (model.link.x == View.windowXSize){
 			View.scrollPositonX += View.windowXSize;
 		}
 	}
 	void viewDecreaseX(){
-		if (Link.x == View.windowXSize){
+		if (model.link.x == View.windowXSize){
 			View.scrollPositonX -= View.windowXSize;
 		}
 
 	}
 	void viewIncraseY(){
-		if (Link.y == View.windowYSize){
+		if (model.link.y == View.windowYSize){
 			View.scrollPositonY += View.windowYSize;
 		}
 	}
 	void viewDecreaseY(){
-		if (Link.y == View.windowYSize){
+		if (model.link.y == View.windowYSize){
 			View.scrollPositonY -= View.windowYSize;
 		}
 	}

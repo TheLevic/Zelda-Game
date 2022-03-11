@@ -59,16 +59,16 @@ public class Model {
 
 	//Checking collisions between bricks and Link
 	public boolean isThereACollision(Link l, Brick b){
-		if (Link.x + Link.w < b.x){
+		if (link.x + link.w < b.x){
 			return false;
 		}
-		if (Link.x > b.x + b.w){
+		if (link.x > b.x + b.w){
 			return false;
 		}
-		if(Link.y + Link.h < b.y){
+		if(link.y + link.h < b.y){
 			return false;
 		}
-		if (Link.y > b.y + b.h){
+		if (link.y > b.y + b.h){
 			return false;
 		}
 		return true;

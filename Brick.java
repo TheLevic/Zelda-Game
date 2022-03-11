@@ -11,12 +11,8 @@ import java.awt.Graphics;
  * 
  */
 
-public class Brick {
-
-	//Variables
-	
+public class Brick extends Sprite{
 	//Location of the brick
-	int x, y, w = 50, h = 50;
 	static BufferedImage image;
 	
 	
@@ -25,6 +21,8 @@ public class Brick {
 		this.x = locationx;
 		this.y = locationy;
 		image = View.loadImage("brick.jpg");
+		w = 50;
+		h = 50;
 	}
 
 
@@ -64,14 +62,16 @@ public class Brick {
 	}
 
 
-
+	//Marshalling Methods
 	Brick(Json ob){
+		w = 50;
+		h = 50;
 		x = (int)ob.getLong("brickx");
 		y = (int)ob.getLong("bricky");
 		image = View.loadImage("brick.jpg");
 	}
 
-	//Marshalling Methods
+	
 	Json Marshal(){
 		Json ob = Json.newObject();
 		ob.add("brickx", x);
@@ -85,8 +85,12 @@ public class Brick {
 		return "Brick (x,y) = (" + x + ", " + y + ")";
 	}
 
+	@Override
 	void draw(Graphics g){
 		g.drawImage(image, x - View.scrollPositonX, y - View.scrollPositonY, null);
 	}
+	@Override
+    public void update(){
+    }
 	
 }

@@ -7,27 +7,26 @@ import java.awt.Graphics;
  * 
  * 
  */
-public class Link {
+public class Link extends Sprite{
 
     //Variables
-    static int x;
-    static int y;
-    static int prevX;
-    static int prevY;
-    final static int w = 55;
-    final static int h = 70;
-    static double speed = 8;
-    static int AnimationNum = 0;
+    int prevX;
+    int prevY;
+    double speed = 8;
+    int AnimationNum = 0;
     static BufferedImage[] linkImages;
 
     Link(){
         x = 100;
         y = 100;
+        w = 55;
+        h = 70;
         prevX = x;
         prevY = y;
         loadImage();
     }
 
+    @Override
     public void update(){
     }
 
@@ -50,7 +49,6 @@ public class Link {
         if (y + h >= b.y && prevY + h <= b.y){
             y = prevY;
         }
-
     }
 
     void savePrev(){
@@ -70,7 +68,7 @@ public class Link {
     }
 
     
-
+    @Override
     void draw(Graphics g){
         g.drawImage(linkImages[AnimationNum], x - View.scrollPositonX, y - View.scrollPositonY, null);
     }
