@@ -6,5 +6,5 @@ public abstract class Sprite{
 
     abstract void draw(Graphics g);
     abstract void update();
-    
+    abstract Json Marshal();
 }

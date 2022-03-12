@@ -78,4 +78,10 @@ public class Link extends Sprite{
     {
         return "Link (x,y) = (" + x + ", " + y + ")";
     }
+    @Override Json Marshal(){
+        Json ob = Json.newObject();
+        
+
+        return ob;
+    }
 }
