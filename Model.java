@@ -12,20 +12,21 @@ import java.util.ArrayList;
 public class Model {
 	//Member variables
 	Link link;
-	static ArrayList<Brick> bricks;
+	static ArrayList<Sprite> sprites;
 
 	//Constructor
 	Model(){
 		link = new Link();
-		bricks = new ArrayList<Brick>();
+		sprites = new ArrayList<Sprite>();
+		sprites.add(link);
 	}
 
 	public void update(){
 		link.update();
-		for (int i = 0; i < bricks.size(); i++){
-			boolean collision = isThereACollision(link, bricks.get(i));
+		for (int i = 0; i < sprites.size(); i++){
+			boolean collision = isThereACollision(link, sprites.get(i));
 			if (collision){
-				link.getOutOfBrick(bricks.get(i));
+				link.getOutOfBrick(sprites.get(i));
 			}
 		}
 	}
@@ -39,16 +40,16 @@ public class Model {
 		Json tmpList = Json.newList();
 	
         ob.add("brick", tmpList);
-        for(int i = 0; i < bricks.size(); i++)
-            tmpList.add(bricks.get(i).Marshal());
+        for(int i = 0; i < sprites.size(); i++)
+            tmpList.add(sprites.get(i).Marshal());
         return ob;
 	}
 
 	void Unmarshal(Json ob){
-		bricks = new ArrayList<Brick>(); //Making a new list for our bricks
-		Json tmplist = ob.get("brick"); //Getting bricks from our file
+		sprites = new ArrayList<Sprite>(); //Making a new list for our sprites
+		Json tmplist = ob.get("brick"); //Getting sprites from our file
 		for(int i = 0; i < tmplist.size(); i++){
-            bricks.add(new Brick(tmplist.get(i)));
+            sprites.add(new Brick(tmplist.get(i)));
 		}
 	}
 	//Loading the map
@@ -57,18 +58,18 @@ public class Model {
 		Unmarshal(loadObject);
 	}
 
-	//Checking collisions between bricks and Link
-	public boolean isThereACollision(Link l, Brick b){
-		if (link.x + link.w < b.x){
+	//Checking collisions between sprites and Link
+	public boolean isThereACollision(Sprite l, Sprite b){
+		if (l.x + l.w < b.x){
 			return false;
 		}
-		if (link.x > b.x + b.w){
+		if (l.x > b.x + b.w){
 			return false;
 		}
-		if(link.y + link.h < b.y){
+		if(l.y + l.h < b.y){
 			return false;
 		}
-		if (link.y > b.y + b.h){
+		if (l.y > b.y + b.h){
 			return false;
 		}
 		return true;

@@ -34,7 +34,7 @@ public class Brick extends Sprite{
 		Brick n = new Brick(x,y);
 		//Brick detection/deletion
 		if (!detectBrick(x,y)) {
-			Model.bricks.add(n);
+			Model.sprites.add(n);
 		}
 		else {
 			n = null;
@@ -47,12 +47,12 @@ public class Brick extends Sprite{
 
 	//Makes sure we aren't placing two bricks in the same location (USING ITERATOR HERE)
 	public static boolean detectBrick(int locationx, int locationy) { //Location x and y are the snap to grid locations of the brick we are trying to place
-		if(Model.bricks.size() == 0) {
+		if(Model.sprites.size() == 0) {
 			return false;
 		}
-		Iterator<Brick> it = Model.bricks.iterator();
+		Iterator<Sprite> it = Model.sprites.iterator();
 		while (it.hasNext()){
-			Brick testing = it.next(); //Testing our new brick vs the existing bricks
+			Sprite testing = it.next(); //Testing our new brick vs the existing bricks
 			if ((locationx >= testing.x && locationx < testing.x + testing.w && locationy >= testing.y && locationy < testing.y + testing.h)) {
 				it.remove();
 				return true;
@@ -90,7 +90,13 @@ public class Brick extends Sprite{
 		g.drawImage(image, x - View.scrollPositonX, y - View.scrollPositonY, null);
 	}
 	@Override
-    public void update(){
+    void update(){
     }
+	@Override
+	boolean isBrick(){
+		return true;
+	}
+
+
 	
 }

@@ -30,7 +30,7 @@ public class Link extends Sprite{
     public void update(){
     }
 
-    void getOutOfBrick(Brick b){
+    void getOutOfBrick(Sprite b){
         //If he's going right into a brick
         if (x + w >= b.x && prevX + w <= b.x){
             x = prevX;
@@ -78,10 +78,14 @@ public class Link extends Sprite{
     {
         return "Link (x,y) = (" + x + ", " + y + ")";
     }
-    @Override Json Marshal(){
+    @Override 
+    Json Marshal(){
         Json ob = Json.newObject();
-        
-
         return ob;
     }
+    @Override
+    boolean isLink(){
+        return true;
+    }
+
 }

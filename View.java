@@ -50,11 +50,11 @@ class View extends JPanel{
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
 		//Adds the bricks to the screen
-		for (int i = 0; i < Model.bricks.size(); i++){
-			Model.bricks.get(i).draw(g);
+		for (int i = 0; i < Model.sprites.size(); i++){
+			Model.sprites.get(i).draw(g);
 		}
 
 		//Drawing link to screen
-		model.link.draw(g);
+		// model.link.draw(g);
 	}
 }
