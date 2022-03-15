@@ -28,6 +28,12 @@ public class Link extends Sprite{
 
     @Override
     public void update(){
+        for (int i = 0; i < Model.sprites.size(); i++){
+			boolean collision = Model.isThereACollision(this, Model.sprites.get(i));
+			if (collision){
+				this.getOutOfBrick(Model.sprites.get(i));
+			}
+		}
     }
 
     void getOutOfBrick(Sprite b){

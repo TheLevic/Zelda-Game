@@ -22,12 +22,9 @@ public class Model {
 	}
 
 	public void update(){
-		link.update();
+		// link.update();
 		for (int i = 0; i < sprites.size(); i++){
-			boolean collision = isThereACollision(link, sprites.get(i));
-			if (collision){
-				link.getOutOfBrick(sprites.get(i));
-			}
+			sprites.get(i).update();
 		}
 	}
 
@@ -47,6 +44,7 @@ public class Model {
 
 	void Unmarshal(Json ob){
 		sprites = new ArrayList<Sprite>(); //Making a new list for our sprites
+		sprites.add(link);
 		Json tmplist = ob.get("brick"); //Getting sprites from our file
 		for(int i = 0; i < tmplist.size(); i++){
             sprites.add(new Brick(tmplist.get(i)));
@@ -59,7 +57,7 @@ public class Model {
 	}
 
 	//Checking collisions between sprites and Link
-	public boolean isThereACollision(Sprite l, Sprite b){
+	static boolean isThereACollision(Sprite l, Sprite b){
 		if (l.x + l.w < b.x){
 			return false;
 		}
