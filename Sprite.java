@@ -14,6 +14,11 @@ public abstract class Sprite{
     abstract void draw(Graphics g);
     abstract void update();
     abstract Json Marshal();
+    @Override 
+    public String toString()
+    {
+        return "Sprites (x,y) = (" + x + ", " + y + ")";
+    }
 
     boolean isBrick(){return false;}
     boolean isLink(){return false;}

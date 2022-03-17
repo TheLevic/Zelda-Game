@@ -17,8 +17,8 @@ public class Link extends Sprite{
     static BufferedImage[] linkImages;
 
     Link(){
-        x = 100;
-        y = 100;
+        this.x = 100;
+        this.y = 100;
         w = 55;
         h = 70;
         prevX = x;
@@ -29,10 +29,12 @@ public class Link extends Sprite{
     @Override
     public void update(){
         for (int i = 0; i < Model.sprites.size(); i++){
-			boolean collision = Model.isThereACollision(this, Model.sprites.get(i));
-			if (collision){
-				this.getOutOfBrick(Model.sprites.get(i));
-			}
+            if (!Model.sprites.get(i).isLink()){
+                boolean collision = Model.isThereACollision(this, Model.sprites.get(i));
+                if (collision){
+                    this.getOutOfBrick(Model.sprites.get(i));
+                }
+            }
 		}
     }
 
