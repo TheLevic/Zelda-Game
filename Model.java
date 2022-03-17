@@ -1,10 +1,7 @@
-/*
+/* 
  * Levi Crider
  * 2/9/22
  * Legend of Zelda
- *
- * 
- * 
  */
 import java.util.ArrayList;
 
@@ -22,7 +19,6 @@ public class Model {
 	}
 
 	public void update(){
-		// link.update();
 		for (int i = 0; i < sprites.size(); i++){
 			sprites.get(i).update();
 		}
@@ -50,6 +46,7 @@ public class Model {
             sprites.add(new Brick(tmplist.get(i)));
 		}
 	}
+	
 	//Loading the map
 	public void loadFile(){
 		Json loadObject = Json.load("brickLocation.json");
