@@ -4,17 +4,20 @@ import java.awt.image.BufferedImage;
 public class Pot extends Sprite {
 
     //Member variables
-    int speed = 5;
     static BufferedImage image;
 
-    Pot(){
-        this.x = 50;
-        this.y = 50;
-
+    Pot(int locationX, int locationY){
+        this.x = locationX;
+        this.y = locationY;
     }
     
     @Override
     void draw(Graphics g){
+
+    }
+
+    @Override
+    void loadImage(){
 
     }
 
@@ -28,4 +31,7 @@ public class Pot extends Sprite {
         Json ob = Json.newObject();
         return ob;
     }
+
+    @Override
+    boolean isPot(){return true;}
 }

@@ -31,7 +31,6 @@ public class Model {
 	Json Marshal(){
 		Json ob = Json.newObject();
 		Json tmpList = Json.newList();
-	
         ob.add("brick", tmpList);
         for(int i = 0; i < sprites.size(); i++)
             tmpList.add(sprites.get(i).Marshal());

@@ -64,13 +64,13 @@ public class Link extends Sprite{
         prevY = y;
     }
 
-    private void loadImage(){
+    @Override
+    void loadImage(){
         if (linkImages == null){
             linkImages = new BufferedImage[25];
             for (int i = 1; i < 25; i++){
                 String tmp = Integer.toString(i) + ".png";
                 linkImages[i - 1] = View.loadImage("linkPictures/" + tmp);
-                System.out.println("Loading image" + i);
             }
         }
     }

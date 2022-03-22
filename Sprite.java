@@ -14,6 +14,7 @@ public abstract class Sprite{
     abstract void draw(Graphics g);
     abstract void update();
     abstract Json Marshal();
+    abstract void loadImage();
     @Override 
     public String toString()
     {
@@ -22,4 +23,6 @@ public abstract class Sprite{
 
     boolean isBrick(){return false;}
     boolean isLink(){return false;}
+    boolean isBoomerang(){return false;}
+    boolean isPot(){return false;}
 }

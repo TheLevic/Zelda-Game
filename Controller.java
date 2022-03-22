@@ -33,6 +33,8 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		boolean down;
 		boolean left;
 		boolean right;
+		//Boomerang
+		boolean ctrl;
 	
 	
 	Controller(Model m) {
@@ -96,6 +98,9 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 			case KeyEvent.VK_DOWN: 
 				down = true;
 				break;
+			case KeyEvent.VK_CONTROL:
+				ctrl = true;
+				break;
 				
 		}
 
@@ -107,10 +112,14 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 	{
 		switch(e.getKeyCode())
 		{
+			//Movement
 			case KeyEvent.VK_RIGHT: right = false; break;
 			case KeyEvent.VK_LEFT: left = false; break;
 			case KeyEvent.VK_UP: up = false; break;
 			case KeyEvent.VK_DOWN: down = false; break;
+
+			//Boomerang
+			case KeyEvent.VK_CONTROL: ctrl = false; break;
 			
 		}
 	}
@@ -128,7 +137,8 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		//Exit
 		if(esc) System.exit(0);
 		if (q) System.exit(0);
-		//Moving our character
+
+		//Moving Link
 		//0-4 is runnning away, 5-9 is running forwards, 10-14 is running left, 15-19 is running right
 		if (right){
 			model.link.x += model.link.speed;
@@ -178,6 +188,29 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 				model.link.AnimationNum = 5;	
 			}
 			model.link.AnimationNum++;
+		}
+
+
+		//Boomerang controls
+		if (ctrl){
+			for (int i = 0; i < Model.sprites.size(); i++){
+				if (Model.sprites.get(i).isBoomerang()){
+					//Need to check which direction we're facing, and then increment x or y by the correct direction and speed
+					if (model.link.prevX < model.link.x){
+						
+					}
+					else if (model.link.prevX > model.link.x){
+
+					}
+					else if (model.link.prevY < model.link.y){
+
+					}
+					else{
+
+					}
+					//The above should cover our directions, I just don't know what to actually update. Obviously the Boomerange x or y, but I don't know where to actually add it into the sprite list.
+				}
+			}
 		}
 	}
 

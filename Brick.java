@@ -20,7 +20,7 @@ public class Brick extends Sprite{
 	public Brick(int locationx, int locationy) {
 		this.x = locationx;
 		this.y = locationy;
-		image = View.loadImage("brick.jpg");
+		loadImage();
 		w = 50;
 		h = 50;
 	}
@@ -68,7 +68,7 @@ public class Brick extends Sprite{
 		h = 50;
 		x = (int)ob.getLong("brickx");
 		y = (int)ob.getLong("bricky");
-		image = View.loadImage("brick.jpg");
+		loadImage();
 	}
 
 	
@@ -97,6 +97,12 @@ public class Brick extends Sprite{
 		return true;
 	}
 
+	@Override
+	void loadImage(){
+		if (image == null){
+			image = View.loadImage("brick.jpg");
+		}
+	}
 
 	
 }
