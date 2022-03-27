@@ -24,6 +24,28 @@ public class Model {
 		}
 	}
 
+	public void addBoomerang(){
+		Boomerang boom = new Boomerang();
+		System.out.println(link.getDirection());
+		if (link.getDirection() == 1){
+			boom.x = link.x + (link.w * 1/2);
+			boom.y = link.y;
+		}
+		else if (link.getDirection() == 2){
+			boom.x =	 link.x + link.w;
+			boom.y = link.y + (link.h * 1/2);
+		}
+		else if (link.getDirection() == 3){
+			boom.x = link.x + (link.w * 1/2);
+			boom.y = link.y + link.h;
+		}
+		else if (link.getDirection() == 4){
+			boom.x = link.x;
+			boom.y = link.y + (link.h * 1/2);
+		}
+		sprites.add(boom);
+	}
+
 	
 	
 

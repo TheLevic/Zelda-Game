@@ -141,6 +141,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		//Moving Link
 		//0-4 is runnning away, 5-9 is running forwards, 10-14 is running left, 15-19 is running right
 		if (right){
+			model.link.direction = 2;
 			model.link.x += model.link.speed;
 			//Moving the window when we goes through a right door
 			viewIncreaseX();
@@ -152,6 +153,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		}
 
 		if (left){
+			model.link.direction = 4;
 			model.link.x -= model.link.speed;
 
 			//Moving the window when we goes through a left door
@@ -165,6 +167,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		}
 
 		if (up){
+			model.link.direction = 1;
 			model.link.y -= model.link.speed;
 
 			//Moving the window when we goes through an up door
@@ -178,6 +181,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		}
 
 		if (down){
+			model.link.direction = 3;
 			model.link.y += model.link.speed;
 
 			//Moving the window when we goes through an down door
@@ -193,24 +197,8 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 
 		//Boomerang controls
 		if (ctrl){
-			for (int i = 0; i < Model.sprites.size(); i++){
-				if (Model.sprites.get(i).isBoomerang()){
-					//Need to check which direction we're facing, and then increment x or y by the correct direction and speed
-					if (model.link.prevX < model.link.x){
-						
-					}
-					else if (model.link.prevX > model.link.x){
-
-					}
-					else if (model.link.prevY < model.link.y){
-
-					}
-					else{
-
-					}
-					//The above should cover our directions, I just don't know what to actually update. Obviously the Boomerange x or y, but I don't know where to actually add it into the sprite list.
-				}
-			}
+			//Going to get direction of link, and make a new boomerang
+			model.addBoomerang();
 		}
 	}
 

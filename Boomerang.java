@@ -8,9 +8,9 @@ public class Boomerang extends Sprite {
     static BufferedImage[] images;
 
     public Boomerang(){
-        if (images == null){
-            loadImage();
-        }
+        loadImage();
+        w = 8;
+        h = 12;
     }
 
     //Overridden methods

@@ -15,6 +15,7 @@ public class Link extends Sprite{
     double speed = 8;
     int AnimationNum = 0;
     static BufferedImage[] linkImages;
+    public int direction; //1 is up, 2 is right, 3 is down, 4 is left
 
     Link(){
         this.x = 100;
@@ -63,6 +64,12 @@ public class Link extends Sprite{
         prevX = x;
         prevY = y;
     }
+
+    //Direction stuff for link to throw the boomerang properly
+    public int getDirection(){
+        return direction;
+    }
+    
 
     @Override
     void loadImage(){
