@@ -90,7 +90,8 @@ public class Brick extends Sprite{
 		g.drawImage(image, x - View.scrollPositonX, y - View.scrollPositonY, null);
 	}
 	@Override
-    void update(){
+    boolean update(){
+		return true;
     }
 	@Override
 	boolean isBrick(){

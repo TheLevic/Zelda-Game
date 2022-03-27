@@ -2,6 +2,7 @@ import java.awt.Graphics;
 
 public abstract class Sprite{
     int x, y, w, h;
+    boolean isActive;
 
     public Sprite(){
         x = 0;
@@ -12,7 +13,7 @@ public abstract class Sprite{
 
 
     abstract void draw(Graphics g);
-    abstract void update();
+    abstract boolean update();
     abstract Json Marshal();
     abstract void loadImage();
     @Override 

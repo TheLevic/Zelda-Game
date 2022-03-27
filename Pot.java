@@ -22,8 +22,9 @@ public class Pot extends Sprite {
     }
 
     @Override
-    void update(){
+    boolean update(){
 
+        return true;
     }
 
     @Override

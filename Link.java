@@ -28,7 +28,7 @@ public class Link extends Sprite{
     }
 
     @Override
-    public void update(){
+    public boolean update(){
         for (int i = 0; i < Model.sprites.size(); i++){
             if (!Model.sprites.get(i).isLink()){
                 boolean collision = Model.isThereACollision(this, Model.sprites.get(i));
@@ -37,6 +37,7 @@ public class Link extends Sprite{
                 }
             }
 		}
+        return true;
     }
 
     void getOutOfBrick(Sprite b){
@@ -70,6 +71,46 @@ public class Link extends Sprite{
         return direction;
     }
     
+    public void moveUp(){
+        this.direction = 1;
+		this.y -= this.speed;
+        if (this.AnimationNum >= 4){
+            this.AnimationNum = 0;	
+        }
+        this.AnimationNum++;
+    }
+    public void moveDown(){
+        //Animating link and setting directions for boomerang
+        this.direction = 3;
+        this.y += this.speed;
+        //Animating the character
+        if (this.AnimationNum >= 9 || this.AnimationNum < 5){
+            this.AnimationNum = 5;	
+        }
+        this.AnimationNum++;
+    }
+
+    public void moveRight(){
+        //Animating link and setting directions for boomerang
+			this.direction = 2;
+			this.x += this.speed;
+			//Animating the character
+			if (this.AnimationNum >= 19 || this.AnimationNum < 15){
+				this.AnimationNum = 15;	
+			}
+			this.AnimationNum++;
+    }
+
+    public void moveLeft(){
+        //Animating link and setting directions for boomerang
+			this.direction = 4;
+			this.x -= this.speed;
+			//Animating the character
+			if (this.AnimationNum >= 14 || this.AnimationNum < 10){
+				this.AnimationNum = 10;	
+			}
+			this.AnimationNum++;
+    }
 
     @Override
     void loadImage(){

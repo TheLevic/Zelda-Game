@@ -139,65 +139,32 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		if (q) System.exit(0);
 
 		//Moving Link
-		//0-4 is runnning away, 5-9 is running forwards, 10-14 is running left, 15-19 is running right
 		if (right){
-			model.link.direction = 2;
-			model.link.x += model.link.speed;
-			//Moving the window when we goes through a right door
 			viewIncreaseX();
-			//Animating the character
-			if (model.link.AnimationNum >= 19 || model.link.AnimationNum < 15){
-				model.link.AnimationNum = 15;	
-			}
-			model.link.AnimationNum++;
+			model.link.moveRight();
 		}
 
 		if (left){
-			model.link.direction = 4;
-			model.link.x -= model.link.speed;
-
 			//Moving the window when we goes through a left door
 			viewDecreaseX();
-
-			//Animating the character
-			if (model.link.AnimationNum >= 14 || model.link.AnimationNum < 10){
-				model.link.AnimationNum = 10;	
-			}
-			model.link.AnimationNum++;
+			model.link.moveLeft();
 		}
 
 		if (up){
-			model.link.direction = 1;
-			model.link.y -= model.link.speed;
-
+			model.link.moveUp();
 			//Moving the window when we goes through an up door
 			viewDecreaseY();
-
-			//Animating the character
-			if (model.link.AnimationNum >= 4){
-				model.link.AnimationNum = 0;	
-			}
-			model.link.AnimationNum++;
+			
 		}
 
 		if (down){
-			model.link.direction = 3;
-			model.link.y += model.link.speed;
-
+			model.link.moveDown();
 			//Moving the window when we goes through an down door
 			viewIncraseY();
-
-			//Animating the character
-			if (model.link.AnimationNum >= 9 || model.link.AnimationNum < 5){
-				model.link.AnimationNum = 5;	
-			}
-			model.link.AnimationNum++;
 		}
-
 
 		//Boomerang controls
 		if (ctrl){
-			//Going to get direction of link, and make a new boomerang
 			model.addBoomerang();
 		}
 	}

@@ -21,30 +21,42 @@ public class Model {
 	public void update(){
 		for (int i = 0; i < sprites.size(); i++){
 			sprites.get(i).update();
+			if (sprites.get(i).update() == false){
+				sprites.remove(i);
+			}
 		}
 	}
 
 	public void addBoomerang(){
 		Boomerang boom = new Boomerang();
-		System.out.println(link.getDirection());
 		if (link.getDirection() == 1){
+			boom.xdirection = 0;
+			boom.ydirection = -1;
 			boom.x = link.x + (link.w * 1/2);
 			boom.y = link.y;
 		}
 		else if (link.getDirection() == 2){
-			boom.x =	 link.x + link.w;
+			boom.xdirection = 1;
+			boom.ydirection = 0;
+			boom.x = link.x + link.w;
 			boom.y = link.y + (link.h * 1/2);
 		}
 		else if (link.getDirection() == 3){
+			boom.xdirection = 0;
+			boom.ydirection = 1;
 			boom.x = link.x + (link.w * 1/2);
 			boom.y = link.y + link.h;
 		}
 		else if (link.getDirection() == 4){
+			boom.xdirection = -1;
+			boom.ydirection = 0;
 			boom.x = link.x;
 			boom.y = link.y + (link.h * 1/2);
 		}
 		sprites.add(boom);
 	}
+
+	
 
 	
 	
