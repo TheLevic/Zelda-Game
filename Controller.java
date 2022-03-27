@@ -28,6 +28,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		boolean l;
 		//Toggle map
 		boolean mapEdit = false;
+		boolean potOrBrick = false; //false is for brick, true is for pots.
 		//Movement
 		boolean up;
 		boolean down;
@@ -82,6 +83,27 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 				else{
 					mapEdit = true;
 					System.out.println("Map editing turned on!");
+					if (potOrBrick){
+						System.out.println("Editing Pots right now!");
+					}
+					else if (!potOrBrick){
+						System.out.println("Editing Bricks right now!");
+					}
+				}
+				break;
+			case KeyEvent.VK_P:
+				if (potOrBrick){
+					potOrBrick = false;
+					if (mapEdit && !potOrBrick){
+						System.out.println("Editing Bricks");
+					}
+				}
+				else{
+					potOrBrick = true;
+					if (mapEdit && potOrBrick){
+						System.out.println("Editing Pots");
+					}
+					
 				}
 				break;
 
@@ -97,9 +119,6 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 				break;
 			case KeyEvent.VK_DOWN: 
 				down = true;
-				break;
-			case KeyEvent.VK_CONTROL:
-				ctrl = true;
 				break;
 				
 		}
@@ -119,7 +138,7 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 			case KeyEvent.VK_DOWN: down = false; break;
 
 			//Boomerang
-			case KeyEvent.VK_CONTROL: ctrl = false; break;
+			case KeyEvent.VK_CONTROL: model.addBoomerang(); break;
 			
 		}
 	}
@@ -162,11 +181,6 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 			//Moving the window when we goes through an down door
 			viewIncraseY();
 		}
-
-		//Boomerang controls
-		if (ctrl){
-			model.addBoomerang();
-		}
 	}
 
 
@@ -176,8 +190,12 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		//Gets the location of where user clicks
 		int locationx = e.getX();
 		int locationy = e.getY();
-		if(mapEdit){
+		//Adding bricks or pots to the map
+		if(mapEdit && !potOrBrick){
 			Brick.addBrickToScreen(locationx + View.scrollPositonX, locationy + View.scrollPositonY); //Adds the brick to the screen
+		}
+		if (mapEdit && potOrBrick){
+			Pot.addPotToScreen(locationx + View.scrollPositonX, locationy + View.scrollPositonY);
 		}
 		
 	}

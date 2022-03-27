@@ -25,6 +25,8 @@ public class Boomerang extends Sprite {
         animationNum++;
     } 
 
+    
+
     void collided(){
         for (int i = 0; i < Model.sprites.size(); i++){
             if (!Model.sprites.get(i).isBoomerang() && !Model.sprites.get(i).isLink()){
@@ -51,7 +53,6 @@ public class Boomerang extends Sprite {
                 int tmpNum = i + 1; //To load the images
                 String tmp = "images/boomerang" + tmpNum + ".png";
                 images[i] = View.loadImage(tmp);
-                System.out.println("Loaded " + tmp);
             }
         }
     }
