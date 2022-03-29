@@ -63,26 +63,39 @@ public class Model {
 
 	//Marshalling methods
 	Json Marshal(){
-		Json ob = Json.newObject();
-		Json tmpList = Json.newList();
-        ob.add("brick", tmpList);
-        for(int i = 0; i < sprites.size(); i++)
-            tmpList.add(sprites.get(i).Marshal());
-        return ob;
+		Json ob1 = Json.newObject();
+
+		Json tmpList = Json.newList(); //Creating our list
+		//Adding our bricks and pots to list
+        ob1.add("sprites", tmpList);
+        for(int i = 0; i < sprites.size(); i++){
+			tmpList.add(sprites.get(i).Marshal()); //This is where it actually saves
+		}
+		return ob1;
 	}
 
 	void Unmarshal(Json ob){
 		sprites = new ArrayList<Sprite>(); //Making a new list for our sprites
-		sprites.add(link);
-		Json tmplist = ob.get("brick"); //Getting sprites from our file
-		for(int i = 0; i < tmplist.size(); i++){
-            sprites.add(new Brick(tmplist.get(i)));
+		sprites.add(link); //Adding link to that list
+		Json tmplist = ob.get("sprites"); //Getting bricks from our file
+		for (int i = 0; i < tmplist.size(); i++){
+			try {
+				sprites.add(new Brick(tmplist.get(i)));
+			} catch (Exception e) {
+				//Do nothing
+			}
+
+			try {
+				sprites.add(new Pot(tmplist.get(i)));
+			} catch (Exception e) {
+				//Do nothing
+			}
 		}
 	}
 	
 	//Loading the map
 	public void loadFile(){
-		Json loadObject = Json.load("brickLocation.json");
+		Json loadObject = Json.load("spriteLocation.json");
 		Unmarshal(loadObject);
 	}
 

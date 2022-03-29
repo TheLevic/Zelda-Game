@@ -9,7 +9,6 @@ public class Boomerang extends Sprite {
     int maxImageNum = 4; //How many images are in the array above.
     int xdirection;
     int ydirection;
-    boolean isActive;
 
     public Boomerang(){
         loadImage();

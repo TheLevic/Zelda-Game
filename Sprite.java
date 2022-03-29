@@ -2,7 +2,7 @@ import java.awt.Graphics;
 
 public abstract class Sprite{
     int x, y, w, h;
-    boolean isActive;
+    boolean isActive = true;
 
     public Sprite(){
         x = 0;
