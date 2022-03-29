@@ -4,6 +4,7 @@
  * Legend of Zelda
  */
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Model {
@@ -18,8 +19,30 @@ public class Model {
 		sprites.add(link);
 	}
 
+
+	/*
+	* Our update funciton is going to take care of any updates that are needed within our world or our sprites
+	*/
 	public void update(){
 		for (int i = 0; i < sprites.size(); i++){
+			//Collision Detection
+			for (int j = 0; j < sprites.size(); j++){
+				if ( i != j){
+					boolean collide = isThereACollision(sprites.get(i), sprites.get(j));
+					if (collide){
+						if (sprites.get(i).isLink()){
+							link.getOutOfSprite(sprites.get(j));
+						}
+						if (sprites.get(i).isBoomerang() && !sprites.get(j).isLink()){
+							sprites.get(i).Collided();
+						}
+						if (sprites.get(i).isPot() && sprites.get(j).isBoomerang()){
+							sprites.get(i).Collided();
+						}
+					}
+				}
+			}
+			//Update all sprites
 			sprites.get(i).update();
 			if (sprites.get(i).update() == false){
 				sprites.remove(i);
@@ -27,6 +50,8 @@ public class Model {
 		}
 	}
 
+
+	//Boomerang Stuff
 	public void addBoomerang(){
 		Boomerang boom = new Boomerang();
 		if (link.getDirection() == 1){
@@ -56,9 +81,52 @@ public class Model {
 		sprites.add(boom);
 	}
 
-	
+	//Pot Stuff
+	void addPotToScreen(int X, int Y) {
+		int x = X - X % 50;
+		int y = Y - Y % 50;
+		Pot p = new Pot(x, y);
+		sprites.add(p);
+	}
 
 	
+
+	//Brick stuff
+
+	void addBrickToScreen(int X, int Y) {
+		int x = X - X % 50;
+		int y = Y - Y % 50;
+		Brick n = new Brick(x,y);
+		//Brick detection/deletion
+		if (!collideBrick(x,y)) {
+			sprites.add(n);
+		}
+		else {
+			n = null;
+			System.out.println("There is already a brick there!");
+		}
+	}
+
+	/*
+	Makes sure we aren't placing two bricks in the same location (USING ITERATOR HERE)
+	Location x and y are the snap to grid locations of the brick we are trying to place 
+	*/
+	boolean collideBrick(int locationx, int locationy) { 
+		if(sprites.size() == 0) {
+			return false;
+		}
+		Iterator<Sprite> it = sprites.iterator();
+		while (it.hasNext()){
+				Sprite testing = it.next(); //Testing our new brick vs the existing bricks
+				if (testing.isBrick()){
+					if ((locationx >= testing.x && locationx < testing.x + testing.w && locationy >= testing.y && locationy < testing.y + testing.h)) {
+						it.remove();
+						return true;
+					}
+				}
+		}
+		return false;
+	}
 	
 
 	//Marshalling methods

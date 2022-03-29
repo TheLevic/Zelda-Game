@@ -29,18 +29,10 @@ public class Link extends Sprite{
 
     @Override
     public boolean update(){
-        for (int i = 0; i < Model.sprites.size(); i++){
-            if (!Model.sprites.get(i).isLink()){
-                boolean collision = Model.isThereACollision(this, Model.sprites.get(i));
-                if (collision){
-                    this.getOutOfBrick(Model.sprites.get(i));
-                }
-            }
-		}
         return true;
     }
 
-    void getOutOfBrick(Sprite b){
+    public void getOutOfSprite(Sprite b){
         //If he's going right into a brick
         if (x + w >= b.x && prevX + w <= b.x){
             x = prevX;
@@ -142,6 +134,10 @@ public class Link extends Sprite{
     @Override
     boolean isLink(){
         return true;
+    }
+    @Override
+    void Collided(){
+        
     }
 
 }

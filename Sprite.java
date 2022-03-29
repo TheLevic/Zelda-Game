@@ -16,6 +16,7 @@ public abstract class Sprite{
     abstract boolean update();
     abstract Json Marshal();
     abstract void loadImage();
+    abstract void Collided();
     @Override 
     public String toString()
     {

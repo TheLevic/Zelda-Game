@@ -192,10 +192,10 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 		int locationy = e.getY();
 		//Adding bricks or pots to the map
 		if(mapEdit && !potOrBrick){
-			Brick.addBrickToScreen(locationx + View.scrollPositonX, locationy + View.scrollPositonY); //Adds the brick to the screen
+			model.addBrickToScreen(locationx + View.scrollPositonX, locationy + View.scrollPositonY); //Adds the brick to the screen
 		}
 		if (mapEdit && potOrBrick){
-			Pot.addPotToScreen(locationx + View.scrollPositonX, locationy + View.scrollPositonY);
+			model.addPotToScreen(locationx + View.scrollPositonX, locationy + View.scrollPositonY);
 		}
 		
 	}

@@ -19,14 +19,6 @@ public class Pot extends Sprite {
         h = 38;
         inOnePiece = true;
     }
-    
-    public static void addPotToScreen(int X, int Y) {
-		int x = X - X % 50;
-		int y = Y - Y % 50;
-		Pot p = new Pot(x, y);
-		Model.sprites.add(p);
-		
-	}
 
     void cycleImages(){
         if(inOnePiece){
@@ -38,21 +30,9 @@ public class Pot extends Sprite {
     }
 
     //Checking collision with pots
-    void collided(){
-        for (int i = 0; i < Model.sprites.size(); i++){
-            if (Model.sprites.get(i).isLink()){
-                boolean colliding = Model.isThereACollision(this, Model.sprites.get(i));
-                if (colliding){
-                    //Not sure what to do here to get links direction to move the pot properly
-                }
-            }
-            else if (!Model.sprites.get(i).isLink() && !Model.sprites.get(i).isPot()){
-                boolean colliding = Model.isThereACollision(this, Model.sprites.get(i));
-                if (colliding){
-                    inOnePiece = false;
-                }
-            }
-        }
+    @Override
+    void Collided(){
+        inOnePiece = false;
     }
 
     @Override
@@ -74,7 +54,6 @@ public class Pot extends Sprite {
 
     @Override
     boolean update(){
-        collided();
         cycleImages();
         return isActive;
     }

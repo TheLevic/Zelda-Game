@@ -25,16 +25,9 @@ public class Boomerang extends Sprite {
     } 
 
     
-
-    void collided(){
-        for (int i = 0; i < Model.sprites.size(); i++){
-            if (!Model.sprites.get(i).isBoomerang() && !Model.sprites.get(i).isLink()){
-                boolean colliding = Model.isThereACollision(this, Model.sprites.get(i));
-                if (colliding){
-                    isActive = false;
-                }
-            }
-        }
+    @Override
+    void Collided(){
+        isActive = false;
     }
 
     //Overridden methods
@@ -64,7 +57,7 @@ public class Boomerang extends Sprite {
         x += speed * xdirection;
         y += speed * ydirection;
         cycleImages();
-        collided();
+        // collided();
         return isActive;
     }
     
