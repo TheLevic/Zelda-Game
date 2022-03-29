@@ -75,4 +75,10 @@ public class Boomerang extends Sprite {
     }
     @Override
     boolean isBoomerang(){return true;}
+
+    @Override 
+    public String toString()
+    {
+        return "Boomerang (x,y) = (" + x + ", " + y + ")";
+    }
 }
