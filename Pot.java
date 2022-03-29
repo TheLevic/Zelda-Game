@@ -46,7 +46,7 @@ public class Pot extends Sprite {
                     //Not sure what to do here to get links direction to move the pot properly
                 }
             }
-            else if (Model.sprites.get(i).isBoomerang()){
+            else if (!Model.sprites.get(i).isLink() && !Model.sprites.get(i).isPot()){
                 boolean colliding = Model.isThereACollision(this, Model.sprites.get(i));
                 if (colliding){
                     inOnePiece = false;
