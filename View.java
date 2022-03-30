@@ -50,8 +50,8 @@ class View extends JPanel{
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
 		//Adds the sprites to the screen
-		for (int i = 0; i < Model.sprites.size(); i++){
-			Model.sprites.get(i).draw(g);
+		for (int i = 0; i < model.sprites.size(); i++){
+			model.sprites.get(i).draw(g);
 		}
 	}
 }
