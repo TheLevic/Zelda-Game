@@ -57,7 +57,6 @@ public class Boomerang extends Sprite {
         x += speed * xdirection;
         y += speed * ydirection;
         cycleImages();
-        // collided();
         return isActive;
     }
     
