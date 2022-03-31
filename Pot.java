@@ -9,14 +9,20 @@ public class Pot extends Sprite {
     int animationNum;
     int speed = 5;
     boolean inOnePiece;
+    int xdirection, ydirection;
+    boolean moveUp;
+    boolean moveRight;
+    boolean moveDown;
+    boolean moveLeft;
+    int countdown = 10;
 
     Pot(int locationX, int locationY){
         this.x = locationX;
         this.y = locationY;
         isActive = true;
         loadImage();
-        w = 38;
-        h = 38;
+        w = 35;
+        h = 35;
         inOnePiece = true;
     }
 
@@ -26,13 +32,41 @@ public class Pot extends Sprite {
         }
         else{
             animationNum = maxImageNum - 1;
+
         }
     }
+
+    //Pot movement
+    void movePotUp(){
+            xdirection = 0;
+            ydirection = -1;
+            this.y += speed * ydirection;
+    }
+    void movePotRight(){
+        
+        xdirection = 1;
+        ydirection = 0;
+        this.x += speed * xdirection;
+        
+    }
+    void movePotDown(){
+        xdirection = 0;
+        ydirection = 1;
+        this.y += speed * ydirection;
+    }
+    void movePotLeft(){
+        xdirection = -1;
+        ydirection = 0;
+        this.y += speed * ydirection;
+    }
+
+
 
     //Checking collision with pots
     @Override
     void Collided(){
         inOnePiece = false;
+        speed = 0;
     }
 
     @Override
@@ -54,6 +88,19 @@ public class Pot extends Sprite {
 
     @Override
     boolean update(){
+        //Pot movement with link
+        if (moveUp){
+            movePotUp();
+        }
+        if (moveDown){
+            movePotDown();
+        }
+        if (moveLeft){
+            movePotLeft();
+        }
+        if (moveRight){
+            movePotRight();
+        }
         cycleImages();
         return isActive;
     }
@@ -67,8 +114,8 @@ public class Pot extends Sprite {
     }
 
     Pot(Json ob){
-		w = 38;
-		h = 38;
+		w = 35;
+		h = 35;
 		x = (int)ob.getLong("potx");
 		y = (int)ob.getLong("poty");
 		loadImage();

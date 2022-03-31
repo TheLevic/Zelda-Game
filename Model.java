@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 
+
 public class Model {
 	//Member variables
 	Link link;
@@ -25,19 +26,58 @@ public class Model {
 	*/
 	public void update(){
 		for (int i = 0; i < sprites.size(); i++){
-			//Collision Detection
+			//Collison
 			for (int j = 0; j < sprites.size(); j++){
 				if ( i != j){
 					boolean collide = isThereACollision(sprites.get(i), sprites.get(j));
 					if (collide){
-						if (sprites.get(i).isLink()){
+						//Collision detection for Link
+						if (sprites.get(i).isLink() && !sprites.get(j).isPot()){
 							link.getOutOfSprite(sprites.get(j));
 						}
-						if (sprites.get(i).isBoomerang() && !sprites.get(j).isLink()){
+						//Collision for boomerang hitting anything (besides link)
+						else if (sprites.get(i).isBoomerang() && !sprites.get(j).isLink()){
 							sprites.get(i).Collided();
+							
 						}
-						if (sprites.get(i).isPot() && sprites.get(j).isBoomerang()){
-							sprites.get(i).Collided();
+						//Collision for pots with anything (besides link)
+						else if (sprites.get(i).isPot() && !sprites.get(j).isLink()){
+							Pot n = (Pot)sprites.get(i);
+							n.Collided();
+						}
+						//Collision for Link hitting pot
+						else if (sprites.get(i).isLink() && sprites.get(j).isPot()){
+							if (link.getDirection() == 1){
+								Pot n = (Pot)sprites.get(j);
+								n.moveUp = true;
+								n.moveLeft = false;
+								n.moveDown = false;
+								n.moveRight = false;
+							}
+							else if (link.getDirection() == 2){
+								//Need to move the pot right
+								Pot n = (Pot)sprites.get(j);
+								n.moveRight = true;
+								n.moveLeft = false;
+								n.moveDown = false;
+								n.moveUp = false;
+							}
+							else if (link.getDirection() == 3){
+								//need to move the pot down
+								Pot n = (Pot)sprites.get(j);
+								n.moveDown = true;
+								n.moveLeft = false;
+								n.moveRight = false;
+								n.moveUp = false;
+							}
+							else if (link.getDirection() == 4){
+								//Need to move the pot left
+								Pot n = (Pot)sprites.get(j);
+								n.moveLeft = true;
+								n.moveDown = false;
+								n.moveUp = false;
+								n.moveRight = false;
+							}
 						}
 					}
 				}
@@ -179,7 +219,7 @@ public class Model {
 		// Unmarshal(loadObject2);
 	}
 
-	//Checking collisions between sprites and Link
+	//Checking collisions between sprites
 	static boolean isThereACollision(Sprite l, Sprite b){
 		if (l.x + l.w < b.x){
 			return false;
