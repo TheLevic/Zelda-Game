@@ -172,20 +172,12 @@ public class Model {
 	//Marshalling methods
 	Json Marshal(){
 		Json ob1 = Json.newObject();
+		Json tmpList = Json.newList(); //Creating our pots
 
-		Json tmpListBricks = Json.newList(); //Creating our list
-		Json tmpListPots = Json.newList();
-
-		//Adding our bricks to list and pots to list
-        for(int i = 0; i < sprites.size(); i++){
-			if (sprites.get(i).isBrick()){
-				ob1.add("brick", tmpListBricks);
-				tmpListBricks.add(sprites.get(i).Marshal()); //This is where it actually saves
-			}
-			if (sprites.get(i).isPot()){
-				ob1.add("pot", tmpListPots);
-				tmpListPots.add(sprites.get(i).Marshal());
-			}
+		ob1.add("brick", tmpList);
+		ob1.add("pot", tmpList);
+		for (int i = 0; i < sprites.size(); i++){
+			tmpList.add(sprites.get(i).Marshal());
 		}
 		return ob1;
 	}
@@ -194,7 +186,8 @@ public class Model {
 		sprites = new ArrayList<Sprite>(); //Making a new list for our sprites
 		sprites.add(link); //Adding link to that list
 		Json tmplistBricks = ob.get("brick"); //Getting bricks from our file
-		Json tmpListPots = ob.get("pot");
+		//Json tmpListPots = ob.get("pot");
+		
 		for (int i = 0; i < tmplistBricks.size(); i++){
 			try {
 				sprites.add(new Brick(tmplistBricks.get(i)));
@@ -204,7 +197,7 @@ public class Model {
 			}
 
 			try {
-					sprites.add(new Pot(tmpListPots.get(i)));
+					sprites.add(new Pot(tmplistBricks.get(i)));
 			} catch (Exception e) {
 				//Do nothing
 			}
