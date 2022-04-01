@@ -172,8 +172,7 @@ public class Model {
 	//Marshalling methods
 	Json Marshal(){
 		Json ob1 = Json.newObject();
-		Json tmpList = Json.newList(); //Creating our pots
-
+		Json tmpList = Json.newList(); 
 		ob1.add("brick", tmpList);
 		ob1.add("pot", tmpList);
 		for (int i = 0; i < sprites.size(); i++){
@@ -205,11 +204,9 @@ public class Model {
 	}
 	
 	//Loading the map
-	public void loadFile(){
+	public void loadFile(){		
 		Json loadObject = Json.load("brickLocation.json");
 		Unmarshal(loadObject);
-		// Json loadObject2 = Json.load("potLocation.json");
-		// Unmarshal(loadObject2);
 	}
 
 	//Checking collisions between sprites

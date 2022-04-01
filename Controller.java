@@ -63,24 +63,14 @@ class Controller implements ActionListener, MouseListener, KeyListener{
 
 			//Saving
 			case KeyEvent.VK_S:
-			for (int i = 0; i < model.sprites.size(); i++){
-				if (model.sprites.get(i).isBrick()){
-					Json saveObject = model.Marshal();
-					saveObject.save("brickLocation.json");
-				}
-				if (model.sprites.get(i).isPot()){
-					Json saveObject = model.Marshal();
-					saveObject.save("potLocation.json");
-				}
-			}
+				
+				model.Marshal();
 				System.out.println("Saved");
 				break;
 			//Loading
 			case KeyEvent.VK_L:
 				Json loadObject = Json.load("brickLocation.json");
 				model.Unmarshal(loadObject);
-				Json loadObject2 = Json.load("potLocation.json");
-				model.Unmarshal(loadObject2);
 				System.out.println("Loaded");
 				break;
 			
