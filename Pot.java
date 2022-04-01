@@ -14,7 +14,7 @@ public class Pot extends Sprite {
     boolean moveRight;
     boolean moveDown;
     boolean moveLeft;
-    int countdown = 10;
+    int countdown = 15;
 
     Pot(int locationX, int locationY){
         this.x = locationX;
@@ -57,7 +57,7 @@ public class Pot extends Sprite {
     void movePotLeft(){
         xdirection = -1;
         ydirection = 0;
-        this.y += speed * ydirection;
+        this.x += speed * xdirection;
     }
 
 
@@ -102,6 +102,12 @@ public class Pot extends Sprite {
             movePotRight();
         }
         cycleImages();
+        if (!inOnePiece){
+            countdown--;
+            if (countdown == 0){
+                isActive = false;
+            }
+        }
         return isActive;
     }
 

@@ -32,7 +32,7 @@ public class Model {
 					boolean collide = isThereACollision(sprites.get(i), sprites.get(j));
 					if (collide){
 						//Collision detection for Link
-						if (sprites.get(i).isLink() && !sprites.get(j).isPot()){
+						if (sprites.get(i).isLink()){
 							link.getOutOfSprite(sprites.get(j));
 						}
 						//Collision for boomerang hitting anything (besides link)
@@ -46,7 +46,7 @@ public class Model {
 							n.Collided();
 						}
 						//Collision for Link hitting pot
-						else if (sprites.get(i).isLink() && sprites.get(j).isPot()){
+						 if (sprites.get(i).isLink() && sprites.get(j).isPot()){
 							if (link.getDirection() == 1){
 								Pot n = (Pot)sprites.get(j);
 								n.moveUp = true;
